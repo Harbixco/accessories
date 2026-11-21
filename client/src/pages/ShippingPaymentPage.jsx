@@ -44,7 +44,7 @@ const ShippingPaymentPage = () => {
               <p className="text-[11px] text-gray-600">
                 • Standardversand (netto): <strong>9,90 €</strong><br />
                 • <strong>Versandkostenfrei</strong> ab <strong>500,00 €</strong> netto Warenwert.<br />
-                • Regellaufzeit: 24–48 Stunden. Same-Day Versand bei Bestellung bis 14:00 Uhr.
+                • Regellaufzeit: 24–48 Stunden innerhalb Deutschlands.
               </p>
             </div>
 

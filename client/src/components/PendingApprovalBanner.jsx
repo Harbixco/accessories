@@ -40,14 +40,14 @@ const PendingApprovalBanner = () => {
                   Unser B2B-Verifizierungsteam prüft aktuell Ihre Unternehmensdaten und USt-IdNr.{' '}
                   <strong className="font-mono text-gray-900 font-bold">{user?.vatId || 'DE...'}</strong>. 
                   Die Prüfung dauert in der Regel <strong>2 bis 4 Werksstunden</strong>. Sobald die Freischaltung erfolgt ist, 
-                  erhalten Sie eine E-Mail und haben sofort Zugriff auf alle Händlereinkaufspreise, Mengenstaffeln und Same-Day Expressversand.
+                  erhalten Sie eine E-Mail und haben sofort Zugriff auf alle Händlereinkaufspreise, Mengenstaffeln und Expressversand.
                 </>
               ) : (
                 <>
                   Our B2B verification team is currently validating your business credentials and VAT ID{' '}
                   <strong className="font-mono text-gray-900 font-bold">{user?.vatId || 'DE...'}</strong>. 
                   Approval typically completes within <strong>2 to 4 business hours</strong>. You will receive an email once approved, 
-                  unlocking net wholesale prices, bulk volume tiers, and same-day dispatch.
+                  unlocking net wholesale prices, bulk volume tiers, and express shipping.
                 </>
               )}
             </p>

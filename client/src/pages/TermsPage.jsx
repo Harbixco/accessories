@@ -66,8 +66,8 @@ const TermsPage = () => {
           </h2>
           <p>
             {isGerman
-              ? 'Die Lieferung erfolgt ab unserem deutschen Zentrallager (Industriestraße 18, 60327 Frankfurt am Main) per DHL Express oder UPS Express. Bestellungen bis 14:00 Uhr werden noch am selben Tag an den Frachtführer übergeben. Ab einem Netto-Warenwert von 500,00 € liefern wir innerhalb Deutschlands frachtfrei.'
-              : 'Shipment takes place from our central warehouse in Frankfurt am Main via DHL Express or UPS Express. Orders placed by 14:00 CET are dispatched same-day. Deliveries within Germany are freight-free for orders exceeding €500.00 net.'}
+              ? 'Die Lieferung erfolgt ab unserem deutschen Zentrallager (Industriestraße 18, 60327 Frankfurt am Main) per DHL oder UPS. Bestellungen werden zügig an den Frachtführer übergeben. Ab einem Netto-Warenwert von 500,00 € liefern wir innerhalb Deutschlands frachtfrei.'
+              : 'Shipment takes place from our central warehouse in Frankfurt am Main via DHL or UPS. Orders are processed swiftly and transferred to the carrier. Deliveries within Germany are freight-free for orders exceeding €500.00 net.'}
           </p>
         </section>
 

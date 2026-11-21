@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
-import { X, ShoppingBag, Plus, Minus, Trash2, ArrowRight, ShieldCheck } from 'lucide-react';
+import { X, ShoppingBag, Plus, Minus, Trash2, ArrowRight } from 'lucide-react';
 
 const CartDrawer = () => {
   const { t, i18n } = useTranslation();
@@ -91,14 +91,6 @@ const CartDrawer = () => {
             </button>
           </div>
 
-          {/* Wholesale Trust & Dispatch Bar */}
-          <div className="px-4 py-2 bg-gray-50 border-b border-gray-200 text-xs flex items-center justify-between">
-            <span className="text-[11px] text-gray-600 flex items-center gap-1.5 font-medium">
-              <ShieldCheck size={13} className="text-emerald-600" />
-              <span>{isGerman ? 'Geprüfte B2B-Handelsware • Kein Mindestbestellwert' : 'Verified B2B wholesale • No minimum order value'}</span>
-            </span>
-            <span className="text-[10px] text-gray-500 font-bold">{isGerman ? 'Frachtfrei ab 500 €' : 'Free ship €500+'}</span>
-          </div>
 
           {/* Cart Items List */}
           <div className="flex-1 overflow-y-auto p-4 divide-y divide-gray-100 space-y-3">

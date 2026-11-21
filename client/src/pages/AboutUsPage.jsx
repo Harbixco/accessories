@@ -39,7 +39,7 @@ const AboutUsPage = () => {
           <p>
             {isGerman
               ? 'Als reiner B2B-Anbieter konkurrieren wir nicht mit unseren Kunden, sondern unterstützen den Fachhandel mit marktführenden Staffelpreisen, sofortiger Lagerverfügbarkeit und verlässlicher technischer Prüfung.'
-              : 'Operating strictly as a B2B wholesale partner, we empower independent dealers with volume-tiered net pricing, verified European stock, and same-day logistics.'}
+              : 'Operating strictly as a B2B wholesale partner, we empower independent dealers with volume-tiered net pricing, verified European stock, and efficient logistics.'}
           </p>
         </section>
 
@@ -60,12 +60,12 @@ const AboutUsPage = () => {
           <div className="bg-gray-50 border border-gray-200 rounded p-4 space-y-1.5">
             <Truck size={20} className="text-[#0B1E3F]" />
             <strong className="block text-gray-900 font-bold text-xs">
-              {isGerman ? 'Same-Day Versand bis 14 Uhr' : 'Same-Day Dispatch'}
+              {isGerman ? 'Schneller Versand' : 'Fast Dispatch'}
             </strong>
             <p className="text-[11px] text-gray-500">
               {isGerman
-                ? 'Bestellungen bis 14:00 Uhr verlassen unser Frankfurter Zentrallager noch am selben Tag.'
-                : 'Orders received by 14:00 CET leave our central facility on the very same day.'}
+                ? 'Bestellungen verlassen unser Frankfurter Zentrallager zügig per DHL & UPS.'
+                : 'Orders leave our central facility in Frankfurt promptly via DHL & UPS.'}
             </p>
           </div>
 
@@ -88,7 +88,7 @@ const AboutUsPage = () => {
           </h2>
           <p>
             {isGerman
-              ? 'Unser hochmodernes Logistikzentrum in Frankfurt am Main umfasst über 3.500 m² Lagerfläche mit permanenter Bestandsführung. Durch die unmittelbare Nähe zum Frankfurter Flughafen und den Frachtzentren von DHL Express und UPS garantieren wir kürzeste Laufzeiten in der gesamten D-A-CH-Region und Westeuropa.'
+              ? 'Unser hochmodernes Logistikzentrum in Frankfurt am Main umfasst über 3.500 m² Lagerfläche mit permanenter Bestandsführung. Durch die unmittelbare Nähe zum Frankfurter Flughafen und den Frachtzentren von DHL und UPS ermöglichen wir kurze Laufzeiten in der gesamten D-A-CH-Region und Westeuropa.'
               : 'Our state-of-the-art 3,500 m² distribution hub in Frankfurt am Main ensures permanent stock availability and rapid transit times across Germany, Austria, Switzerland, and Western Europe.'}
           </p>
         </section>
