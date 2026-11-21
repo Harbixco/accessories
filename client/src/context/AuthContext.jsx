@@ -1,6 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Ensure any early network request immediately carries the stored token
+const initialSavedToken = localStorage.getItem('bc_token');
+if (initialSavedToken) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${initialSavedToken}`;
+}
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {

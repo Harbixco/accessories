@@ -1,15 +1,23 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { fallbackProducts } from '../data/fallbackProducts';
 
 const CartContext = createContext();
 
 // Helper to determine active unit price according to quantity tier
 export const calculateTierPrice = (product, quantity) => {
-  if (!product || !product.basePrice) return 0;
-  let unitPrice = product.basePrice;
+  if (!product) return 0;
+  const fallback = fallbackProducts?.find((fp) => fp.sku === product.sku);
+  let unitPrice = (typeof product.basePrice === 'number' && product.basePrice > 0)
+    ? product.basePrice
+    : (fallback?.basePrice || 0);
 
-  if (product.tieredPricing && product.tieredPricing.length > 0) {
-    const tiers = [...product.tieredPricing].sort((a, b) => b.minQty - a.minQty);
-    for (const tier of tiers) {
+  const tiers = (product.tieredPricing && product.tieredPricing.length > 0)
+    ? product.tieredPricing
+    : (fallback?.tieredPricing || []);
+
+  if (tiers && tiers.length > 0) {
+    const sortedTiers = [...tiers].sort((a, b) => b.minQty - a.minQty);
+    for (const tier of sortedTiers) {
       if (quantity >= tier.minQty) {
         unitPrice = tier.price;
         break;

@@ -13,7 +13,7 @@ import { ShoppingCart, Check, ChevronRight, Heart } from 'lucide-react';
 const ProductDetailPage = () => {
   const { id } = useParams();
   const { t, i18n } = useTranslation();
-  const { isApproved } = useAuth();
+  const { isApproved, token } = useAuth();
   const { addToCart } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { addToast } = useToast();
@@ -32,8 +32,15 @@ const ProductDetailPage = () => {
       try {
         const res = await axios.get(`/api/products/${id}`);
         if (res.data.success && res.data.product) {
-          setProduct(res.data.product);
-          setQuantity(res.data.product.moq || 1);
+          const p = res.data.product;
+          const fb = fallbackProducts.find((f) => f.sku === p.sku || f._id === p._id);
+          const merged = {
+            ...p,
+            basePrice: (typeof p.basePrice === 'number' && p.basePrice > 0) ? p.basePrice : (fb?.basePrice ?? p.basePrice),
+            tieredPricing: (p.tieredPricing && p.tieredPricing.length > 0) ? p.tieredPricing : (fb?.tieredPricing || []),
+          };
+          setProduct(merged);
+          setQuantity(p.moq || 1);
           return;
         }
       } catch (err) {
@@ -48,7 +55,7 @@ const ProductDetailPage = () => {
       }
     };
     fetchProduct();
-  }, [id]);
+  }, [id, token, isApproved]);
 
   if (!product) {
     return (

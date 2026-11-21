@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { fallbackProducts } from '../data/fallbackProducts';
@@ -8,6 +9,7 @@ import { ArrowRight } from 'lucide-react';
 
 const HomePage = () => {
   const { t, i18n } = useTranslation();
+  const { isApproved, token } = useAuth();
   const isGerman = i18n.language?.startsWith('de');
 
   const [products, setProducts] = useState(fallbackProducts);
@@ -18,14 +20,22 @@ const HomePage = () => {
       try {
         const res = await axios.get('/api/products?limit=100');
         if (res.data.success && res.data.products && res.data.products.length > 0) {
-          setProducts(res.data.products);
+          const merged = res.data.products.map((p) => {
+            const fb = fallbackProducts.find((f) => f.sku === p.sku);
+            return {
+              ...p,
+              basePrice: (typeof p.basePrice === 'number' && p.basePrice > 0) ? p.basePrice : (fb?.basePrice ?? p.basePrice),
+              tieredPricing: (p.tieredPricing && p.tieredPricing.length > 0) ? p.tieredPricing : (fb?.tieredPricing || []),
+            };
+          });
+          setProducts(merged);
         }
       } catch (err) {
         // Fallback
       }
     };
     fetchCatalog();
-  }, []);
+  }, [token, isApproved]);
 
   const categoryChips = [
     { key: 'All', de: 'Alle Artikel', en: 'All Articles' },

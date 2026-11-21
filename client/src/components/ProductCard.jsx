@@ -6,6 +6,7 @@ import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useToast } from '../context/ToastContext';
 import { ShoppingCart, Check, Tag, Heart } from 'lucide-react';
+import { fallbackProducts } from '../data/fallbackProducts';
 
 const ProductCard = ({ product }) => {
   const { t, i18n } = useTranslation();
@@ -22,18 +23,24 @@ const ProductCard = ({ product }) => {
   const [heartPulsing, setHeartPulsing] = useState(false);
   const [showTierTooltip, setShowTierTooltip] = useState(false);
 
-  const handleAddToCart = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    addToCart(product, quantity, true);
-    setAdded(true);
-    addToast({
-      title: isGerman ? 'In den Warenkorb gelegt' : 'Added to Shopping Cart',
-      message: `${quantity}x ${name}`,
-      type: 'cart',
-    });
-    setTimeout(() => setAdded(false), 1200);
-  };
+  const fallback = fallbackProducts.find((fp) => fp.sku === product.sku);
+  const rawPrice = product.basePrice ?? product.price ?? fallback?.basePrice ?? 0;
+  const basePriceNum = typeof rawPrice === 'number' && !isNaN(rawPrice) && rawPrice > 0 ? rawPrice : (fallback?.basePrice || 0);
+
+  const formattedBasePrice = isGerman
+    ? `${basePriceNum.toFixed(2).replace('.', ',')} € *`
+    : `€${basePriceNum.toFixed(2)} *`;
+
+  // Approximate commercial UVP / MSRP (typically ~1.45x net for consumer electronics)
+  const estimatedUvp = basePriceNum > 0 ? (basePriceNum * 1.45).toFixed(2) : null;
+
+  const tiers = (product.tieredPricing && product.tieredPricing.length > 0)
+    ? product.tieredPricing
+    : (fallback?.tieredPricing || []);
+
+  const lowestTier = tiers.length > 0
+    ? [...tiers].sort((a, b) => a.price - b.price)[0]
+    : null;
 
   const productId = product._id || product.sku;
   const inWishlist = isInWishlist(productId);
@@ -54,11 +61,18 @@ const ProductCard = ({ product }) => {
     setTimeout(() => setHeartPulsing(false), 400);
   };
 
-  // Approximate commercial UVP / MSRP (typically ~1.45x net for consumer electronics)
-  const estimatedUvp = product.basePrice ? (product.basePrice * 1.45).toFixed(2) : null;
-  const lowestTier = product.tieredPricing && product.tieredPricing.length > 0
-    ? [...product.tieredPricing].sort((a, b) => a.price - b.price)[0]
-    : null;
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart({ ...product, basePrice: basePriceNum, tieredPricing: tiers }, quantity, true);
+    setAdded(true);
+    addToast({
+      title: isGerman ? 'In den Warenkorb gelegt' : 'Added to Shopping Cart',
+      message: `${quantity}x ${name}`,
+      type: 'cart',
+    });
+    setTimeout(() => setAdded(false), 1200);
+  };
 
   return (
     <div className="bg-white border border-gray-200 hover:border-gray-400 hover:shadow-lg hover:-translate-y-1 rounded transition-all duration-300 ease-out flex flex-col h-full group p-3.5 relative">
@@ -184,9 +198,7 @@ const ProductCard = ({ product }) => {
             <div className="flex justify-between items-baseline">
               <div>
                 <span className="text-base font-extrabold text-[#0B1E3F] tabular-nums">
-                  {isGerman
-                    ? `${product.basePrice?.toFixed(2).replace('.', ',')} € *`
-                    : `€${product.basePrice?.toFixed(2)} *`}
+                  {formattedBasePrice}
                 </span>
                 {estimatedUvp && (
                   <span className="text-[10px] text-gray-400 line-through ml-2 tabular-nums">
@@ -212,8 +224,8 @@ const ProductCard = ({ product }) => {
                     <Tag size={10} />
                     <span>
                       {isGerman
-                        ? `ab ${lowestTier.minQty} Stk: ${lowestTier.price.toFixed(2).replace('.', ',')} € *`
-                        : `from ${lowestTier.minQty} pcs: €${lowestTier.price.toFixed(2)} *`}
+                        ? `ab ${lowestTier.minQty} Stk: ${(lowestTier.price || basePriceNum).toFixed(2).replace('.', ',')} € *`
+                        : `from ${lowestTier.minQty} pcs: €${(lowestTier.price || basePriceNum).toFixed(2)} *`}
                     </span>
                   </span>
                   <span className="text-[9px] font-bold text-blue-600">Staffel ▾</span>
@@ -223,11 +235,11 @@ const ProductCard = ({ product }) => {
                 {showTierTooltip && (
                   <div className="absolute bottom-full left-0 mb-1 w-full bg-white border border-gray-300 shadow-xl rounded p-2 text-[10px] z-30 animate-dropdown">
                     <span className="font-bold text-gray-900 block mb-1">Mengenstaffel netto:</span>
-                    {product.tieredPricing.map((tp, idx) => (
+                    {tiers.map((tp, idx) => (
                       <div key={idx} className="flex justify-between py-0.5 border-b border-gray-100 last:border-0 tabular-nums">
                         <span className="text-gray-600">ab {tp.minQty} Stk.</span>
                         <strong className="text-[#0B1E3F]">
-                          {isGerman ? `${tp.price.toFixed(2).replace('.', ',')} €` : `€${tp.price.toFixed(2)}`}
+                          {isGerman ? `${(tp.price || basePriceNum).toFixed(2).replace('.', ',')} €` : `€${(tp.price || basePriceNum).toFixed(2)}`}
                         </strong>
                       </div>
                     ))}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { fallbackProducts } from '../data/fallbackProducts';
@@ -10,6 +11,7 @@ const PRODUCTS_PER_PAGE = 60;
 
 const CatalogPage = () => {
   const { t, i18n } = useTranslation();
+  const { token, isApproved } = useAuth();
   const location = useLocation();
 
   const queryParams = new URLSearchParams(location.search);
@@ -88,7 +90,15 @@ const CatalogPage = () => {
 
         const res = await axios.get(`/api/products?${params.toString()}`);
         if (res.data.success && res.data.products) {
-          setProducts(res.data.products);
+          const merged = res.data.products.map((p) => {
+            const fb = fallbackProducts.find((f) => f.sku === p.sku);
+            return {
+              ...p,
+              basePrice: (typeof p.basePrice === 'number' && p.basePrice > 0) ? p.basePrice : (fb?.basePrice ?? p.basePrice),
+              tieredPricing: (p.tieredPricing && p.tieredPricing.length > 0) ? p.tieredPricing : (fb?.tieredPricing || []),
+            };
+          });
+          setProducts(merged);
           setTotal(res.data.total);
           setTotalPages(res.data.pages || Math.ceil(res.data.total / PRODUCTS_PER_PAGE) || 1);
           return;
@@ -127,7 +137,7 @@ const CatalogPage = () => {
     };
 
     fetchFiltered();
-  }, [selectedBrand, selectedCategory, selectedDevice, search, sort, page]);
+  }, [selectedBrand, selectedCategory, selectedDevice, search, sort, page, token, isApproved]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-4">
