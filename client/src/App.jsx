@@ -14,7 +14,6 @@ import PendingApprovalBanner from './components/PendingApprovalBanner';
 import HomePage from './pages/HomePage';
 import CatalogPage from './pages/CatalogPage';
 import ProductDetailPage from './pages/ProductDetailPage';
-import QuickOrderPage from './pages/QuickOrderPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import LoginPage from './pages/LoginPage';
@@ -61,7 +60,7 @@ function AppContent() {
           <Route path="/" element={<HomePage />} />
           <Route path="/catalog" element={<CatalogPage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
-          <Route path="/quick-order" element={<QuickOrderPage />} />
+          <Route path="/quick-order" element={<Navigate to="/catalog" replace />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />

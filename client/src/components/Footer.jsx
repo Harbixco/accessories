@@ -56,12 +56,6 @@ const Footer = () => {
                 {t('footer.withdrawal')}
               </Link>
             </li>
-            <li>
-              <Link to="/quick-order" className="hover:text-white font-bold text-[#00d2c4] transition-colors inline-flex items-center gap-1">
-                <span>csv-liste</span>
-                <span className="text-[10px]">→</span>
-              </Link>
-            </li>
           </ul>
         </div>
 

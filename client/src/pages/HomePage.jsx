@@ -66,7 +66,7 @@ const HomePage = () => {
             {t('home.ctaRegister')}
           </Link>
           <Link
-            to="/quick-order"
+            to="/catalog"
             className="bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-bold px-4 py-2.5 rounded-xs transition text-center whitespace-nowrap active:scale-[0.98]"
           >
             {t('home.ctaCatalog')}

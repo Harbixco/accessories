@@ -250,13 +250,6 @@ const Navbar = () => {
               <div className="absolute right-0 top-full mt-1.5 w-44 bg-white border border-gray-300 rounded shadow-lg z-50 py-1.5 text-xs animate-dropdown">
                 <div className="absolute -top-1.5 right-5 w-3 h-3 bg-white border-t border-l border-gray-300 transform rotate-45"></div>
                 <Link
-                  to="/quick-order"
-                  onClick={() => setServiceDropdownOpen(false)}
-                  className="block px-3 py-1.5 hover:bg-gray-100 text-gray-700 font-semibold transition-colors"
-                >
-                  {isGerman ? 'csv-liste (Schnellorder)' : 'CSV list (Quick Order)'}
-                </Link>
-                <Link
                   to="/rma"
                   onClick={() => setServiceDropdownOpen(false)}
                   className="block px-3 py-1.5 hover:bg-gray-100 text-gray-700 transition-colors"
@@ -554,16 +547,6 @@ const Navbar = () => {
             <li onMouseEnter={() => handleMouseEnterNav(null)}>
               <Link to="/catalog?sort=newest" className="hover:text-black transition">
                 {isGerman ? 'Neu' : 'new'}
-              </Link>
-            </li>
-
-            {/* CSV-LISTE White Button on Far Right (Exact talksky.de benchmark) */}
-            <li className="ml-auto" onMouseEnter={() => handleMouseEnterNav(null)}>
-              <Link
-                to="/quick-order"
-                className="text-xs uppercase tracking-wider text-gray-900 hover:text-black font-extrabold bg-white hover:bg-gray-50 px-3 py-1 rounded shadow-2xs border border-gray-300 transition block cursor-pointer"
-              >
-                CSV-LISTE
               </Link>
             </li>
           </ul>
@@ -888,12 +871,6 @@ const Navbar = () => {
             </form>
 
             <div className="flex items-center space-x-3 text-xs">
-              <Link
-                to="/quick-order"
-                className="hidden lg:inline-block font-bold text-gray-700 hover:text-black px-2 py-1 bg-gray-100 rounded text-xs uppercase"
-              >
-                csv-liste
-              </Link>
               <button
                 onClick={() => setIsCartDrawerOpen(true)}
                 className="flex items-center space-x-1.5 bg-[#0B1E3F] hover:bg-[#162e5b] text-white px-3 py-1.5 rounded text-xs font-semibold cursor-pointer active:scale-[0.98]"
@@ -1074,17 +1051,6 @@ const Navbar = () => {
                   >
                     {isGerman ? 'Neu' : 'new'}
                   </Link>
-
-                  {/* CSV-LISTE Pill */}
-                  <div className="p-4">
-                    <Link
-                      to="/quick-order"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block text-center w-full bg-white hover:bg-gray-50 text-[#0B1E3F] border-2 border-[#0B1E3F] py-2.5 rounded font-extrabold uppercase tracking-wide text-xs shadow-xs transition"
-                    >
-                      CSV-LISTE (Schnellorder)
-                    </Link>
-                  </div>
                 </div>
               )}
 
@@ -1392,7 +1358,7 @@ const Navbar = () => {
 
               {/* Support & Legal Links */}
               <div className="pt-2 border-t border-gray-200 flex justify-between text-[11px] text-gray-500">
-                <Link to="/quick-order" onClick={() => setMobileMenuOpen(false)} className="hover:underline">csv-liste</Link>
+                <Link to="/catalog" onClick={() => setMobileMenuOpen(false)} className="hover:underline">{isGerman ? 'Katalog' : 'Catalog'}</Link>
                 <Link to="/rma" onClick={() => setMobileMenuOpen(false)} className="hover:underline">RMA</Link>
                 <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="hover:underline">{isGerman ? 'Kontakt' : 'Contact'}</Link>
                 <Link to="/shipping-payment" onClick={() => setMobileMenuOpen(false)} className="hover:underline">{isGerman ? 'Versand' : 'Shipping'}</Link>
