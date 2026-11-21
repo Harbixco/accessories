@@ -34,25 +34,6 @@ const CartDrawer = () => {
   const formatPrice = (val) =>
     isGerman ? `${val.toFixed(2).replace('.', ',')} €` : `€${val.toFixed(2)}`;
 
-  const movProgress = Math.min(100, Math.round((totalNet / minOrderValue) * 100));
-
-  const handleAutoFulfillMov = () => {
-    if (items.length === 0) return;
-    const targetItem = items[0];
-    const unitPrice = targetItem.product?.basePrice || 14.43;
-    const currentNetWithoutTarget = totalNet - (unitPrice * targetItem.quantity);
-    const neededNet = Math.max(0, minOrderValue - currentNetWithoutTarget);
-    const neededQty = Math.ceil(neededNet / unitPrice);
-    updateQuantity(targetItem.productId, Math.max(neededQty, targetItem.quantity + 1));
-    addToast({
-      title: isGerman ? 'Mindestbestellwert erfüllt!' : 'MOV Fulfilled!',
-      message: isGerman
-        ? `Menge auf ${neededQty} Stück angepasst (150,00 € erreicht).`
-        : `Quantity adjusted to ${neededQty} units (€150.00 achieved).`,
-      type: 'success',
-    });
-  };
-
   const handleCheckout = () => {
     if (!user) {
       setIsCartDrawerOpen(false);
@@ -72,16 +53,6 @@ const CartDrawer = () => {
         message: isGerman
           ? 'Ihr B2B-Konto wurde noch nicht freigeschaltet. Bitte warten Sie auf die Freischaltung.'
           : 'Your dealer account is still pending verification by the admin.',
-        type: 'warning',
-      });
-      return;
-    }
-    if (!isMovMet) {
-      addToast({
-        title: isGerman ? 'Mindestbestellwert (150,00 €) noch nicht erreicht' : 'Minimum Order Value (€150.00) Not Met',
-        message: isGerman
-          ? `Noch ${formatPrice(amountToMov)} netto bis zum Mindestbestellwert von 150,00 €.`
-          : `Remaining ${formatPrice(amountToMov)} net to fulfill the €150.00 MOV.`,
         type: 'warning',
       });
       return;
@@ -120,34 +91,13 @@ const CartDrawer = () => {
             </button>
           </div>
 
-          {/* B2B Minimum Order Value (MOV) Progress Bar */}
-          <div className="px-4 py-2.5 bg-gray-50 border-b border-gray-200 text-xs">
-            <div className="flex justify-between items-center mb-1 text-[11px]">
-              <span className="font-semibold text-gray-700">
-                {isGerman ? 'Mindestbestellwert:' : 'Min. Order Value:'} {formatPrice(minOrderValue)} net
-              </span>
-              <span className="font-bold text-[#0B1E3F] tabular-nums">{movProgress}%</span>
-            </div>
-            <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-              <div
-                className={`h-full transition-all duration-500 ease-out ${
-                  isMovMet ? 'animate-shimmer-bar' : 'bg-amber-500'
-                }`}
-                style={{ width: `${movProgress}%` }}
-              ></div>
-            </div>
-            <p className="mt-1 text-[10px] text-gray-500">
-              {isMovMet ? (
-                <span className="text-emerald-700 font-semibold flex items-center gap-1">
-                  <ShieldCheck size={12} />
-                  {isGerman ? 'Mindestbestellwert erreicht! Ab 500 € frachtfrei.' : 'Minimum met! Free shipping above €500.'}
-                </span>
-              ) : (
-                <span>
-                  {isGerman ? 'Noch' : 'Remaining:'} <strong>{formatPrice(amountToMov)} {isGerman ? 'netto' : 'net'}</strong> {isGerman ? 'bis zur Bestellfreigabe' : 'to fulfill MOV'}
-                </span>
-              )}
-            </p>
+          {/* Wholesale Trust & Dispatch Bar */}
+          <div className="px-4 py-2 bg-gray-50 border-b border-gray-200 text-xs flex items-center justify-between">
+            <span className="text-[11px] text-gray-600 flex items-center gap-1.5 font-medium">
+              <ShieldCheck size={13} className="text-emerald-600" />
+              <span>{isGerman ? 'Geprüfte B2B-Handelsware • Kein Mindestbestellwert' : 'Verified B2B wholesale • No minimum order value'}</span>
+            </span>
+            <span className="text-[10px] text-gray-500 font-bold">{isGerman ? 'Frachtfrei ab 500 €' : 'Free ship €500+'}</span>
           </div>
 
           {/* Cart Items List */}
@@ -258,27 +208,6 @@ const CartDrawer = () => {
                   <span>{isGerman ? 'Direkt zur Online-Kasse' : 'Proceed to Online Checkout'}</span>
                   <ArrowRight size={14} />
                 </button>
-
-                {!isMovMet && (
-                  <div className="bg-amber-50 border border-amber-200 rounded p-2 text-[11px] text-amber-900 space-y-1.5">
-                    <div className="flex items-center justify-between font-bold text-amber-800">
-                      <span>⚠️ {isGerman ? 'Mindestbestellwert: 150,00 € netto' : 'Min. Order Value: €150.00 net'}</span>
-                      <span className="text-[10px] bg-amber-200/80 px-1.5 py-0.5 rounded font-mono">{movProgress}%</span>
-                    </div>
-                    <p className="text-amber-800">
-                      {isGerman
-                        ? `Noch ${formatPrice(amountToMov)} netto zur Erfüllung des Mindestbestellwerts.`
-                        : `Remaining ${formatPrice(amountToMov)} net to fulfill wholesale MOV.`}
-                    </p>
-                    <button
-                      type="button"
-                      onClick={handleAutoFulfillMov}
-                      className="w-full bg-[#00D2C4] hover:bg-[#00baa7] text-[#061224] font-bold py-1.5 px-2 rounded text-xs transition text-center cursor-pointer shadow-xs flex items-center justify-center gap-1.5"
-                    >
-                      <span>⚡ {isGerman ? `Stückzahl anpassen auf 150 € (+${formatPrice(amountToMov)})` : `Auto-adjust quantity to €150 (+${formatPrice(amountToMov)})`}</span>
-                    </button>
-                  </div>
-                )}
 
                 {!user && (
                   <div className="bg-slate-100 border border-slate-200 rounded p-2 text-[11px] text-slate-700 flex items-center justify-between">

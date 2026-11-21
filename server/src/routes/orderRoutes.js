@@ -61,8 +61,8 @@ router.post('/', verifyToken, isApprovedB2B, async (req, res) => {
       });
     }
 
-    const minOrderVal = Number(process.env.MINIMUM_ORDER_VALUE || 150);
-    if (calculatedNet < minOrderVal) {
+    const minOrderVal = Number(process.env.MINIMUM_ORDER_VALUE || 0);
+    if (minOrderVal > 0 && calculatedNet < minOrderVal) {
       return res.status(400).json({
         success: false,
         message: `Minimum Order Value (MOV) is €${minOrderVal.toFixed(2)} net. Your cart value is €${calculatedNet.toFixed(2)} net.`,

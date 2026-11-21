@@ -31,25 +31,6 @@ const CartPage = () => {
   const formatPrice = (val) =>
     isGerman ? `${val.toFixed(2).replace('.', ',')} €` : `€${val.toFixed(2)}`;
 
-  const movProgress = Math.min(100, Math.round((totalNet / minOrderValue) * 100));
-
-  const handleAutoFulfillMov = () => {
-    if (items.length === 0) return;
-    const targetItem = items[0];
-    const unitPrice = targetItem.product?.basePrice || 14.43;
-    const currentNetWithoutTarget = totalNet - (unitPrice * targetItem.quantity);
-    const neededNet = Math.max(0, minOrderValue - currentNetWithoutTarget);
-    const neededQty = Math.ceil(neededNet / unitPrice);
-    updateQuantity(targetItem.productId, Math.max(neededQty, targetItem.quantity + 1));
-    addToast({
-      title: isGerman ? 'Mindestbestellwert erfüllt!' : 'MOV Fulfilled!',
-      message: isGerman
-        ? `Menge auf ${neededQty} Stück angepasst (150,00 € erreicht).`
-        : `Quantity adjusted to ${neededQty} units (€150.00 achieved).`,
-      type: 'success',
-    });
-  };
-
   const handleCheckout = () => {
     if (!user) {
       navigate('/login');
@@ -68,16 +49,6 @@ const CartPage = () => {
         message: isGerman
           ? 'Ihr Händlerkonto wird derzeit geprüft. Der Checkout wird nach Freischaltung aktiv.'
           : 'Your account is pending verification. Checkout will be active once approved.',
-        type: 'warning',
-      });
-      return;
-    }
-    if (!isMovMet) {
-      addToast({
-        title: isGerman ? 'Mindestbestellwert nicht erreicht' : 'Minimum Order Value Not Met',
-        message: isGerman
-          ? `Es fehlen noch ${formatPrice(amountToMov)} netto bis zum Mindestbestellwert von 150,00 €.`
-          : `Remaining ${formatPrice(amountToMov)} net to meet the €150.00 MOV.`,
         type: 'warning',
       });
       return;
@@ -113,12 +84,6 @@ const CartPage = () => {
           {t('cart.clearCart')}
         </button>
       </div>
-
-      {!isMovMet && (
-        <div className="bg-amber-50 border border-amber-200 text-amber-800 text-xs p-3 rounded">
-          {t('cart.movMissing')} <strong>{formatPrice(amountToMov)} {isGerman ? 'netto' : 'net'}</strong>.
-        </div>
-      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-8 bg-white border border-gray-200 rounded overflow-hidden">
@@ -203,35 +168,10 @@ const CartPage = () => {
           <button
             type="button"
             onClick={handleCheckout}
-            className={`w-full py-2.5 rounded text-xs font-bold uppercase tracking-wider transition cursor-pointer shadow-xs ${
-              isMovMet && isApproved
-                ? 'bg-[#0B1E3F] hover:bg-[#162e5b] text-white active:scale-[0.98]'
-                : 'bg-[#0B1E3F] hover:bg-[#162e5b] text-white active:scale-[0.98]'
-            }`}
+            className="w-full py-2.5 rounded text-xs font-bold uppercase tracking-wider transition cursor-pointer shadow-xs bg-[#0B1E3F] hover:bg-[#162e5b] text-white active:scale-[0.98]"
           >
             {t('cart.checkout')}
           </button>
-
-          {!isMovMet && (
-            <div className="bg-amber-50 border border-amber-200 rounded p-2.5 text-[11px] text-amber-900 space-y-1.5">
-              <div className="flex items-center justify-between font-bold text-amber-800">
-                <span>⚠️ {isGerman ? 'Mindestbestellwert: 150,00 € netto' : 'Min. Order Value: €150.00 net'}</span>
-                <span className="text-[10px] bg-amber-200/80 px-1.5 py-0.5 rounded font-mono">{movProgress}%</span>
-              </div>
-              <p className="text-amber-800">
-                {isGerman
-                  ? `Noch ${formatPrice(amountToMov)} netto bis zum Mindestbestellwert.`
-                  : `Remaining ${formatPrice(amountToMov)} net to meet wholesale MOV.`}
-              </p>
-              <button
-                type="button"
-                onClick={handleAutoFulfillMov}
-                className="w-full bg-[#00D2C4] hover:bg-[#00baa7] text-[#061224] font-bold py-1.5 px-2 rounded text-xs transition text-center cursor-pointer shadow-xs flex items-center justify-center gap-1.5"
-              >
-                <span>⚡ {isGerman ? `Stückzahl anpassen auf 150 € (+${formatPrice(amountToMov)})` : `Auto-adjust quantity to €150 (+${formatPrice(amountToMov)})`}</span>
-              </button>
-            </div>
-          )}
 
           {!user && (
             <p className="text-[10px] text-gray-500 text-center">

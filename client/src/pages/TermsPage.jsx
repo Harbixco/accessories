@@ -40,12 +40,12 @@ const TermsPage = () => {
 
         <section className="space-y-1.5">
           <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wide border-b border-gray-100 pb-1">
-            § 2 {isGerman ? 'Händlerregistrierung & Mindestbestellwert' : 'Dealer Registration & Minimum Order Value'}
+            § 2 {isGerman ? 'Händlerregistrierung & Konditionen' : 'Dealer Registration & Conditions'}
           </h2>
           <p>
             {isGerman
-              ? 'Für die Einsichtnahme in Händlerpreise und die Durchführung von Bestellungen ist eine vorherige Registrierung unter Angabe der gültigen Umsatzsteuer-Identifikationsnummer (USt-IdNr.) sowie gewerblicher Nachweise erforderlich. Der Mindestbestellwert (MOV) beträgt 150,00 € netto pro Großhandelsauftrag.'
-              : 'Access to wholesale prices and purchasing requires an approved business account with a verified VAT ID (USt-IdNr.). The minimum order value (MOV) is €150.00 net per wholesale purchase order.'}
+              ? 'Für die Einsichtnahme in Händlerpreise und die Durchführung von Bestellungen ist eine vorherige Registrierung unter Angabe der gültigen Umsatzsteuer-Identifikationsnummer (USt-IdNr.) sowie gewerblicher Nachweise erforderlich. Es besteht kein Mindestbestellwert (MOV); Bestellungen sind ab Stück 1 möglich.'
+              : 'Access to wholesale prices and purchasing requires an approved business account with a verified VAT ID (USt-IdNr.). There is no minimum order value (MOV); orders are accepted starting from 1 unit.'}
           </p>
         </section>
 

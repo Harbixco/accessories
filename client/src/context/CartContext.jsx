@@ -112,9 +112,9 @@ export const CartProvider = ({ children }) => {
   const shippingCostNet = totalNet >= 500 || totalNet === 0 ? 0 : 9.90;
   const totalGross = Number((totalNet + vatAmount + shippingCostNet).toFixed(2));
 
-  const minOrderValue = 150.00;
-  const isMovMet = totalNet >= minOrderValue;
-  const amountToMov = Number(Math.max(0, minOrderValue - totalNet).toFixed(2));
+  const minOrderValue = 0;
+  const isMovMet = true;
+  const amountToMov = 0;
 
   return (
     <CartContext.Provider
