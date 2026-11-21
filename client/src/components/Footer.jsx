@@ -102,7 +102,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Col 3: PAYMENT & SHIPPING */}
+        {/* Col 3: PAYMENT METHODS */}
         <div className="space-y-3">
           <h4 className="font-bold text-white uppercase text-[11px] tracking-wider mb-2">
             {t('footer.col3Title')}
@@ -125,33 +125,6 @@ const Footer = () => {
               <span>{t('footer.payCard')}</span>
             </li>
           </ul>
-
-          <div className="pt-2">
-            <h4 className="font-bold text-white uppercase text-[11px] tracking-wider mb-1.5">
-              {t('footer.shippingTitle')}
-            </h4>
-            <p className="text-xs text-slate-300 leading-relaxed mb-2.5">
-              {t('footer.shippingDesc')}
-            </p>
-            {/* Authentic B2B Trust & Logistics Badges */}
-            <div className="flex flex-wrap items-center gap-1.5">
-              <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] font-semibold text-slate-200 border border-white/15">
-                DHL Express
-              </span>
-              <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] font-semibold text-slate-200 border border-white/15">
-                UPS Express
-              </span>
-              <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] font-semibold text-slate-200 border border-white/15">
-                SEPA B2B
-              </span>
-              <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] font-semibold text-slate-200 border border-white/15">
-                PayPal
-              </span>
-              <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] font-semibold text-slate-200 border border-white/15">
-                Visa / MC
-              </span>
-            </div>
-          </div>
         </div>
 
         {/* Col 4: DEALER SERVICES */}

@@ -64,32 +64,6 @@ const Navbar = () => {
     }, 160);
   };
 
-  // Live Warehouse Cutoff Countdown to 14:00 CET
-  const [timeLeft, setTimeLeft] = useState({ hours: 2, minutes: 45, seconds: 18 });
-
-  useEffect(() => {
-    const updateCountdown = () => {
-      const now = new Date();
-      const cutoff = new Date();
-      cutoff.setHours(14, 0, 0, 0);
-
-      if (now > cutoff) {
-        cutoff.setDate(cutoff.getDate() + 1);
-      }
-
-      const diff = Math.max(0, cutoff - now);
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      setTimeLeft({ hours, minutes, seconds });
-    };
-
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   // Scroll detection for Sticky Header
   useEffect(() => {
     const handleScroll = () => {
@@ -140,51 +114,8 @@ const Navbar = () => {
     ? `${totalNet.toFixed(2).replace('.', ',')} €*`
     : `€${totalNet.toFixed(2)}*`;
 
-  const padZero = (n) => String(n).padStart(2, '0');
-
   return (
     <header className="bg-white border-b border-gray-200 text-gray-800 font-sans relative">
-      {/* 0. AUTHENTIC GERMAN WHOLESALE DISPATCH COUNTDOWN BAR */}
-      <div className="bg-[#0B1E3F] text-white text-[11px] py-1 px-3 sm:px-4 border-b border-[#1b3461]">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-center gap-1 font-medium">
-          {/* Mobile Layout (< sm): Clean, single-line centered countdown without cramped multi-line word breaks */}
-          <div className="flex sm:hidden items-center justify-center space-x-1.5 text-gray-200 text-[11px] py-0.5">
-            <span className="text-[#00d2c4] shrink-0">⚡</span>
-            <span className="whitespace-nowrap">
-              {isGerman ? 'Same-Day Versand:' : 'Same-day dispatch:'}
-            </span>
-            <span className="bg-white/20 text-white font-mono font-bold px-1.5 py-0.5 rounded text-[10px] tabular-nums tracking-wide shadow-2xs shrink-0">
-              {padZero(timeLeft.hours)}:{padZero(timeLeft.minutes)}:{padZero(timeLeft.seconds)}
-            </span>
-            <span className="text-gray-300 text-[10px] whitespace-nowrap">
-              (DHL / UPS)
-            </span>
-          </div>
-
-          {/* Desktop & Tablet Layout (>= sm): Full wholesale dispatch banner */}
-          <div className="hidden sm:flex items-center space-x-1.5 text-gray-200">
-            <span className="text-[#00d2c4] shrink-0">⚡</span>
-            <span className="whitespace-nowrap">
-              {isGerman ? 'Bestellen Sie innerhalb von' : 'Order within the next'}
-            </span>
-            <span className="bg-white/15 text-white font-mono font-bold px-1.5 py-0.5 rounded text-[11px] tabular-nums tracking-wide shrink-0">
-              {padZero(timeLeft.hours)}:{padZero(timeLeft.minutes)}:{padZero(timeLeft.seconds)}
-            </span>
-            <span className="whitespace-nowrap">
-              {isGerman
-                ? 'für Same-Day Versand heute per DHL & UPS Express'
-                : 'for same-day dispatch today via DHL & UPS Express'}
-            </span>
-          </div>
-
-          <div className="hidden md:flex items-center space-x-4 text-[10px] text-gray-300">
-            <span>✓ 100% {isGerman ? 'Deutsche Handelsware' : 'German Wholesale Stock'}</span>
-            <span>✓ {isGerman ? 'Staffelpreise ab Stück 1' : 'Volume Tiers from Unit 1'}</span>
-            <span>✓ {isGerman ? 'Frachtfrei ab 500 €' : 'Free Shipping above €500'}</span>
-          </div>
-        </div>
-      </div>
-
       {/* 1. TOP UTILITY BAR (Flag + Language Dropdown, Service/help dropdown) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-1.5 pb-1">
         <div className="flex justify-end items-center space-x-5 text-xs text-gray-600">
