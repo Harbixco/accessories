@@ -80,7 +80,7 @@ const ContactPage = () => {
             <Phone size={16} />
           </div>
           <strong className="block text-gray-900 font-bold text-[11px]">{t('contact.directHotline')}</strong>
-          <p className="text-base font-extrabold text-[#0B1E3F] tracking-tight">+49 (0) 69 98765432</p>
+          <p className="text-base font-extrabold text-[#0B1E3F] tracking-tight">+49 (0) 69 2475 3910</p>
           <span className="text-[10px] text-gray-500 flex items-center gap-1">
             <Clock size={11} />
             <span>{t('contact.hours')}</span>

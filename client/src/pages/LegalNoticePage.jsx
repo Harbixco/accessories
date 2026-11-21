@@ -46,7 +46,7 @@ const LegalNoticePage = () => {
           <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wide border-b border-gray-100 pb-1">
             {isGerman ? 'Kontakt' : 'Contact Information'}
           </h2>
-          <p><strong>Telefon Hotline:</strong> +49 (0) 69 98765432 (Mo-Fr 09:00 - 16:00 CET)</p>
+          <p><strong>Telefon Hotline:</strong> +49 (0) 69 2475 3910 (Mo-Fr 09:00 - 16:00 CET)</p>
           <p><strong>E-Mail:</strong> info@bc-accessories.de / b2b@bc-accessories.de</p>
           <p><strong>Internet:</strong> https://bc-accessories.de</p>
         </section>
