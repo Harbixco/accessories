@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { fallbackProducts } from '../data/fallbackProducts';
-import { Sparkles } from 'lucide-react';
 
 const HomePage = () => {
   const { t, i18n } = useTranslation();
@@ -44,16 +43,12 @@ const HomePage = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
       {/* 1. TOP B2B HERO BANNER */}
-      <section className="bg-gradient-to-r from-[#07152b] via-[#0B1E3F] to-[#122b54] text-white rounded-xs p-6 sm:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-xs border border-[#163463]">
+      <section className="bg-[#0B1E3F] text-white rounded p-6 sm:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border border-[#162e5b]">
         <div className="space-y-2 max-w-2xl">
-          <div className="inline-flex items-center space-x-1.5 bg-[#00d2c4]/20 border border-[#00d2c4]/40 px-2.5 py-0.5 rounded text-[10px] text-[#00d2c4] font-bold uppercase tracking-wider">
-            <Sparkles size={11} />
-            <span>{t('home.badge')}</span>
-          </div>
-          <h1 className="text-xl sm:text-3xl font-extrabold leading-tight tracking-tight">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-normal leading-snug text-white">
             {t('home.title')}
           </h1>
-          <p className="text-xs text-gray-300 leading-relaxed max-w-xl">
+          <p className="text-xs sm:text-sm text-gray-200 font-normal leading-relaxed max-w-xl">
             {t('home.subtitle')}
           </p>
         </div>
@@ -61,13 +56,13 @@ const HomePage = () => {
         <div className="flex flex-col sm:flex-row gap-2.5 shrink-0">
           <Link
             to="/register"
-            className="bg-[#00d2c4] hover:bg-[#00bfae] text-[#061224] text-xs font-bold px-4 py-2.5 rounded-xs transition text-center whitespace-nowrap active:scale-[0.98] shadow-xs"
+            className="bg-[#00d2c4] hover:bg-[#00bfae] text-[#061224] text-xs font-bold px-5 py-2.5 rounded transition text-center whitespace-nowrap active:scale-[0.98] shadow-xs"
           >
             {t('home.ctaRegister')}
           </Link>
           <Link
             to="/catalog"
-            className="bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-bold px-4 py-2.5 rounded-xs transition text-center whitespace-nowrap active:scale-[0.98]"
+            className="bg-white/10 hover:bg-white/20 text-white border border-white/25 text-xs font-semibold px-4 py-2.5 rounded transition text-center whitespace-nowrap active:scale-[0.98]"
           >
             {t('home.ctaCatalog')}
           </Link>
