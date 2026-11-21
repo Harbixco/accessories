@@ -237,7 +237,7 @@ const Navbar = () => {
               onClick={() => setServiceDropdownOpen(!serviceDropdownOpen)}
               className="flex items-center space-x-1 hover:text-gray-900 font-normal focus:outline-none py-0.5 cursor-pointer transition-colors"
             >
-              <span className="text-gray-700 text-xs">{isGerman ? 'Service/Hilfe' : 'Service/help'}</span>
+              <span className="text-gray-700 text-xs">{isGerman ? 'Service & Hilfe' : 'Service & Support'}</span>
               <ChevronDown
                 size={11}
                 className={`text-gray-500 transition-transform duration-200 ${
@@ -1156,7 +1156,7 @@ const Navbar = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-4 py-3 font-bold text-[#1976d2] bg-blue-50/40 hover:bg-blue-50 border-b border-gray-100 text-xs"
                   >
-                    {isGerman ? 'Alle Apple-Artikel anzeigen' : 'Show Apple'}
+                    {isGerman ? 'Alle Apple-Artikel anzeigen' : 'View all Apple items'}
                   </Link>
                   <div className="divide-y divide-gray-100">
                     <Link to="/catalog?brand=Apple&device=iPhone%2016%20Pro" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 hover:bg-gray-50 text-gray-700">
@@ -1206,7 +1206,7 @@ const Navbar = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-4 py-3 font-bold text-[#1976d2] bg-blue-50/40 hover:bg-blue-50 border-b border-gray-100 text-xs"
                   >
-                    {isGerman ? 'Alle Samsung-Artikel anzeigen' : 'Show Samsung'}
+                    {isGerman ? 'Alle Samsung-Artikel anzeigen' : 'View all Samsung items'}
                   </Link>
                   <div className="divide-y divide-gray-100">
                     <Link to="/catalog?brand=Samsung&device=Galaxy%20S24%20Ultra" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 hover:bg-gray-50 text-gray-700">
@@ -1246,14 +1246,14 @@ const Navbar = () => {
                     <span>{isGerman ? 'Alle Kategorien anzeigen' : 'Show all categories'}</span>
                   </button>
                   <div className="px-4 py-2 bg-gray-50 border-b border-gray-100 text-[11px] font-bold text-[#2b78c5] uppercase tracking-wider">
-                    {isGerman ? 'weitere Geräte' : 'other devices'}
+                    {isGerman ? 'Weitere Geräte' : 'More Compatible Devices'}
                   </div>
                   <Link
                     to="/catalog?device=All"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-4 py-3 font-bold text-[#1976d2] bg-blue-50/40 hover:bg-blue-50 border-b border-gray-100 text-xs"
                   >
-                    {isGerman ? 'Alle weiteren Geräte anzeigen' : 'Show other devices'}
+                    {isGerman ? 'Alle weiteren Geräte anzeigen' : 'View all compatible devices'}
                   </Link>
                   <div className="divide-y divide-gray-100">
                     <Link to="/catalog?brand=Xiaomi" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 hover:bg-gray-50 text-gray-700">

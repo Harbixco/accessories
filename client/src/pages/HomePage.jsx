@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { fallbackProducts } from '../data/fallbackProducts';
+import { ArrowRight } from 'lucide-react';
 
 const HomePage = () => {
   const { t, i18n } = useTranslation();
@@ -105,13 +106,14 @@ const HomePage = () => {
           ))}
         </div>
 
-        {/* 6. "ALLE PRODUKTE ANSEHEN" / "VIEW ALL PRODUCTS" BUTTON (Matching Open Dealer Account Color) */}
-        <div className="flex justify-center pt-6 pb-2">
+        {/* B2B Catalog Discovery CTA */}
+        <div className="flex justify-center pt-8 pb-4">
           <Link
             to="/catalog"
-            className="inline-flex items-center justify-center min-h-[48px] px-8 sm:px-12 py-3 bg-[#00d2c4] hover:bg-[#00bfae] text-black border-2 border-black rounded-[8px] text-sm sm:text-base font-black tracking-wider uppercase transition-all duration-150 hover:shadow-md active:scale-[0.98] cursor-pointer"
+            className="group inline-flex items-center justify-center gap-2.5 px-8 sm:px-10 py-3.5 bg-[#00d2c4] hover:bg-[#00bfae] text-[#061224] text-sm sm:text-base font-bold rounded shadow-xs hover:shadow-md transition-all duration-200 active:scale-[0.98] cursor-pointer"
           >
-            <span>{isGerman ? 'ALLE PRODUKTE ANSEHEN' : 'VIEW ALL PRODUCTS'}</span>
+            <span>{isGerman ? 'Gesamtes Sortiment anzeigen (1.500+ Artikel)' : 'Explore Full Wholesale Catalog (1,500+ Items)'}</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
           </Link>
         </div>
       </section>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/AuthContext';
+import { CheckCircle2, ArrowRight } from 'lucide-react';
 
 const LoginPage = () => {
   const { t } = useTranslation();
@@ -53,7 +54,7 @@ const LoginPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Left: Ich bin bereits Kunde / I am already a customer */}
         <div className="bg-white border border-gray-200 rounded p-6 space-y-4">
-          <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wide border-b border-gray-100 pb-2">
+          <h2 className="text-sm font-bold text-gray-900 border-b border-gray-100 pb-2">
             {t('login.existingHeader')}
           </h2>
           <form onSubmit={handleSubmit} className="space-y-3 text-xs">
@@ -100,26 +101,39 @@ const LoginPage = () => {
         {/* Right: Ich bin Neukunde / I am a new customer */}
         <div className="bg-white border border-gray-200 rounded p-6 space-y-4 flex flex-col justify-between">
           <div>
-            <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wide border-b border-gray-100 pb-2">
+            <h2 className="text-sm font-bold text-gray-900 border-b border-gray-100 pb-2">
               {t('login.newHeader')}
             </h2>
             <p className="text-xs text-gray-600 mt-3 leading-relaxed">
               {t('login.newSubtitle')}
             </p>
-            <ul className="text-xs text-gray-600 space-y-1.5 mt-3">
-              <li>• {t('login.benefit1')}</li>
-              <li>• {t('login.benefit2')}</li>
-              <li>• {t('login.benefit3')}</li>
-              <li>• {t('login.benefit4')}</li>
+            <ul className="text-xs text-gray-700 space-y-2 mt-3">
+              <li className="flex items-center gap-2">
+                <CheckCircle2 size={14} className="text-[#00d2c4] shrink-0" />
+                <span>{t('login.benefit1')}</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 size={14} className="text-[#00d2c4] shrink-0" />
+                <span>{t('login.benefit2')}</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 size={14} className="text-[#00d2c4] shrink-0" />
+                <span>{t('login.benefit3')}</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 size={14} className="text-[#00d2c4] shrink-0" />
+                <span>{t('login.benefit4')}</span>
+              </li>
             </ul>
           </div>
 
           <div className="pt-4">
             <Link
               to="/register"
-              className="block text-center w-full bg-gray-100 hover:bg-gray-200 text-gray-800 border border-gray-300 py-2 rounded text-xs font-bold transition"
+              className="inline-flex items-center justify-center gap-2 w-full bg-[#00d2c4] hover:bg-[#00bfae] text-[#061224] py-2.5 rounded text-xs font-bold transition shadow-xs cursor-pointer"
             >
-              {t('login.proceedRegister')}
+              <span>{t('login.proceedRegister')}</span>
+              <ArrowRight size={14} />
             </Link>
           </div>
         </div>
