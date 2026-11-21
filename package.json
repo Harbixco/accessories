@@ -1,0 +1,12 @@
+{
+  "name": "bc-accessories-wholesale",
+  "version": "1.0.0",
+  "private": true,
+  "description": "B2B Wholesale platform for BC Accessories (Phone Accessories • Gadgets • More)",
+  "scripts": {
+    "client": "npm run dev --prefix client",
+    "server": "npm run dev --prefix server",
+    "seed": "npm run seed --prefix server",
+    "build": "npm run build --prefix client"
+  }
+}
