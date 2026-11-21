@@ -329,7 +329,7 @@ const Navbar = () => {
             </Link>
 
             {/* My account */}
-            <div className="relative" ref={accountRef}>
+            <div className="relative hidden sm:block" ref={accountRef}>
               {isLoggedIn ? (
                 <button
                   onClick={() => setAccountDropdownOpen(!accountDropdownOpen)}
