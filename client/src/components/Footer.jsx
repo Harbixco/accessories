@@ -7,10 +7,7 @@ import {
   MapPin,
   Clock,
   ArrowRight,
-  ShieldCheck,
   CheckCircle2,
-  Truck,
-  CreditCard,
 } from 'lucide-react';
 
 const Footer = () => {
@@ -157,7 +154,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Col 4: DEALER SERVICES & VERIFICATION */}
+        {/* Col 4: DEALER SERVICES */}
         <div className="space-y-3">
           <h4 className="font-bold text-white uppercase text-[11px] tracking-wider mb-2">
             {t('footer.col4Title')}
@@ -165,55 +162,11 @@ const Footer = () => {
           <p className="text-xs text-slate-300 leading-relaxed">
             {t('footer.aboutText')}
           </p>
-          <div className="pt-1 space-y-1.5">
-            <Link
-              to="/register"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#00d2c4] hover:text-white hover:underline transition-colors"
-            >
-              <span>{t('footer.openAccount')}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-            <div>
-              <Link
-                to="/catalog"
-                className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-white transition-colors"
-              >
-                <span>{t('footer.catalogLink')}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-            <div>
-              <Link
-                to="/rma"
-                className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-white transition-colors"
-              >
-                <span>{t('footer.rmaPortal')}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Authentic B2B Commercial Compliance Notice */}
-          <div className="pt-3 border-t border-white/10 space-y-1">
-            <div className="flex items-center gap-1.5 text-[11px] text-[#00d2c4] font-semibold">
-              <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
-              <span>{isGerman ? 'Zertifizierter B2B-Fachgroßhandel' : 'Verified B2B Wholesale Distributor'}</span>
-            </div>
-            <p className="text-[10px] text-slate-400">
-              Amtsgericht Frankfurt am Main • HRB 114829
-            </p>
-            <p className="text-[10px] text-slate-400">
-              USt-IdNr.: DE 328 914 502 • WEEE: DE 84219503
-            </p>
-          </div>
         </div>
       </div>
 
       {/* Bottom Legal & Copyright Bar */}
       <div className="border-t border-[#09172e] py-4 px-4 bg-[#071428] text-center text-[11px] text-slate-400">
-        <p className="max-w-4xl mx-auto mb-1 text-slate-400 leading-relaxed">
-          {t('footer.disclaimer')}
-        </p>
         <p className="font-medium text-slate-400">
           © {new Date().getFullYear()} BC Accessories GmbH • Frankfurt am Main • {t('footer.rights')}
         </p>
