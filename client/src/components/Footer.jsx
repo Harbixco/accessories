@@ -166,10 +166,23 @@ const Footer = () => {
       </div>
 
       {/* Bottom Legal & Copyright Bar */}
-      <div className="border-t border-[#09172e] py-4 px-4 bg-[#071428] text-center text-[11px] text-slate-400">
-        <p className="font-medium text-slate-400">
-          © {new Date().getFullYear()} BC Accessories GmbH • Frankfurt am Main • {t('footer.rights')}
-        </p>
+      <div className="border-t border-[#09172e] py-4 px-4 sm:px-6 lg:px-8 bg-[#071428] text-xs text-slate-400">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="font-medium text-slate-400 text-center sm:text-left">
+            Copyright © 2026 BC Accessories
+          </p>
+          <p className="font-medium text-slate-400 text-center sm:text-right">
+            Design by{' '}
+            <a
+              href="https://www.veltrixhub.ng"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-300 hover:text-[#00d2c4] font-semibold underline underline-offset-2 transition-colors"
+            >
+              Veltrix Hub
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
