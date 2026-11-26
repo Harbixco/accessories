@@ -48,6 +48,11 @@ export const sortAvailableFirst = (products = []) => {
     const bAvail = isProductAvailable(b);
     if (aAvail && !bAvail) return -1;
     if (!aAvail && bAvail) return 1;
+    // Both available: prefer BCA-AES- aesthetic cases at the very top
+    const aAes = (a.sku || '').startsWith('BCA-AES-');
+    const bAes = (b.sku || '').startsWith('BCA-AES-');
+    if (aAes && !bAes) return -1;
+    if (!aAes && bAes) return 1;
     return 0;
   });
 };

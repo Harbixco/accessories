@@ -13,7 +13,7 @@ const HomePage = () => {
   const { isApproved, token } = useAuth();
   const isGerman = i18n.language?.startsWith('de');
 
-  const [products, setProducts] = useState(fallbackProducts);
+  const [products, setProducts] = useState(() => sortAvailableFirst(fallbackProducts));
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   useEffect(() => {
@@ -21,15 +21,20 @@ const HomePage = () => {
       try {
         const res = await axios.get('/api/products?limit=100');
         if (res.data.success && res.data.products && res.data.products.length > 0) {
-          const merged = res.data.products.map((p) => {
+          const apiProducts = res.data.products;
+          const missingFallbacks = fallbackProducts.filter(
+            (fb) => !apiProducts.some((p) => p.sku === fb.sku)
+          );
+          const merged = [...apiProducts, ...missingFallbacks].map((p) => {
             const fb = fallbackProducts.find((f) => f.sku === p.sku);
             return {
+              ...fb,
               ...p,
               basePrice: (typeof p.basePrice === 'number' && p.basePrice > 0) ? p.basePrice : (fb?.basePrice ?? p.basePrice),
               tieredPricing: (p.tieredPricing && p.tieredPricing.length > 0) ? p.tieredPricing : (fb?.tieredPricing || []),
             };
           });
-          setProducts(merged);
+          setProducts(sortAvailableFirst(merged));
         }
       } catch (err) {
         // Fallback

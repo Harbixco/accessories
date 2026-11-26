@@ -29,7 +29,7 @@ const CatalogPage = () => {
 
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [products, setProducts] = useState(fallbackProducts.slice(0, PRODUCTS_PER_PAGE));
+  const [products, setProducts] = useState(() => sortAvailableFirst(fallbackProducts).slice(0, PRODUCTS_PER_PAGE));
   const [total, setTotal] = useState(fallbackProducts.length);
 
   const isGerman = i18n.language?.startsWith('de');
@@ -91,9 +91,14 @@ const CatalogPage = () => {
 
         const res = await axios.get(`/api/products?${params.toString()}`);
         if (res.data.success && res.data.products) {
-          const merged = res.data.products.map((p) => {
+          const apiProducts = res.data.products;
+          const missingFallbacks = fallbackProducts.filter(
+            (fb) => !apiProducts.some((p) => p.sku === fb.sku)
+          );
+          const merged = [...apiProducts, ...missingFallbacks].map((p) => {
             const fb = fallbackProducts.find((f) => f.sku === p.sku);
             return {
+              ...fb,
               ...p,
               basePrice: (typeof p.basePrice === 'number' && p.basePrice > 0) ? p.basePrice : (fb?.basePrice ?? p.basePrice),
               tieredPricing: (p.tieredPricing && p.tieredPricing.length > 0) ? p.tieredPricing : (fb?.tieredPricing || []),
@@ -101,8 +106,9 @@ const CatalogPage = () => {
           });
           const sorted = sortAvailableFirst(merged);
           setProducts(sorted);
-          setTotal(res.data.total);
-          setTotalPages(res.data.pages || Math.ceil(res.data.total / PRODUCTS_PER_PAGE) || 1);
+          const adjustedTotal = res.data.total + missingFallbacks.length;
+          setTotal(adjustedTotal);
+          setTotalPages(res.data.pages || Math.ceil(adjustedTotal / PRODUCTS_PER_PAGE) || 1);
           return;
         }
       } catch (e) {
