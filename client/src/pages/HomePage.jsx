@@ -6,7 +6,7 @@ import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { fallbackProducts } from '../data/fallbackProducts';
 import { sortAvailableFirst } from '../utils/productUtils';
-import { ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
 
 const HomePage = () => {
   const { t, i18n } = useTranslation();
@@ -63,10 +63,6 @@ const HomePage = () => {
       {/* 1. TOP B2B HERO BANNER */}
       <section className="bg-[#0B1E3F] text-white rounded p-6 sm:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border border-[#162e5b]">
         <div className="space-y-2 max-w-2xl">
-          <div className="inline-flex items-center gap-1.5 bg-[#00d2c4]/20 border border-[#00d2c4]/40 px-2.5 py-1 rounded text-[11px] font-bold text-[#00d2c4]">
-            <Sparkles size={13} />
-            <span>{isGerman ? 'Aesthetic iPhone Cases • Jetzt sofort ab Lager lieferbar' : 'Aesthetic iPhone Cases • In Stock & Ready to Ship'}</span>
-          </div>
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-normal leading-snug text-white">
             {t('home.title')}
           </h1>
