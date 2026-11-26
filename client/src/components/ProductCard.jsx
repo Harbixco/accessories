@@ -78,7 +78,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="bg-white border border-gray-200 hover:border-gray-400 hover:shadow-lg hover:-translate-y-1 rounded transition-all duration-300 ease-out flex flex-col h-full group p-3.5 relative">
-      {/* Top Image Canvas with Spec Icons */}
+      {/* Top Image Canvas */}
       <div className="relative aspect-square mb-2.5 flex items-center justify-center bg-white overflow-hidden">
         <Link to={`/product/${productId}`} className="w-full h-full flex items-center justify-center p-2">
           <img
@@ -93,67 +93,7 @@ const ProductCard = ({ product }) => {
           />
         </Link>
 
-        {/* Energy Label (A/B/C) */}
-        {product.energyClass && (
-          <div className="absolute top-2 right-12 z-10 flex items-center">
-            <span
-              className={`text-[10px] font-black px-1.5 py-0.5 rounded-l text-white ${
-                product.energyClass === 'A'
-                  ? 'bg-emerald-600'
-                  : product.energyClass === 'B'
-                  ? 'bg-lime-600'
-                  : 'bg-yellow-500'
-              }`}
-            >
-              {product.energyClass}
-            </span>
-            <span className="text-[8px] bg-gray-200 text-gray-700 px-1 py-0.5 font-bold rounded-r border border-l-0 border-gray-300">
-              G
-            </span>
-          </div>
-        )}
-
-        {/* Spec Icons Column */}
-        {product.features && product.features.length > 0 && (
-          <div className="absolute top-2 right-1.5 flex flex-col gap-1 z-10 text-[9px] text-gray-600">
-            {product.features.map((feat, i) => (
-              <span
-                key={i}
-                className="w-6 h-5 border border-gray-300 bg-white/95 rounded-xs flex items-center justify-center font-bold text-[8px] text-blue-700 shadow-2xs uppercase"
-                title={feat}
-              >
-                {feat === 'Bluetooth' ? 'ᛒ' : feat === 'Wi-Fi' ? 'Wi-Fi' : feat === 'NFC' ? 'N' : feat}
-              </span>
-            ))}
-          </div>
-        )}
-
-        {/* Packaging Unit (VPE) Badge */}
-        <div className="absolute top-2 left-2 z-10">
-          <span className="bg-gray-100/90 border border-gray-300 text-gray-600 text-[9px] font-bold px-1.5 py-0.5 rounded-xs uppercase">
-            VPE: {product.moq || 1}
-          </span>
-        </div>
-
-        {/* Coming Soon Ribbon Badge */}
-        {!isAvailable && (
-          <div className="absolute top-2 right-10 z-10">
-            <span className="bg-amber-500 text-white text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-xs shadow-xs tracking-wider">
-              {isGerman ? 'Demnächst' : 'Coming Soon'}
-            </span>
-          </div>
-        )}
-
-        {/* Bundle Badge */}
-        {product.bundleBadge && (
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10">
-            <span className="bg-red-600 text-white text-[10px] font-black tracking-wider px-2 py-0.5 rounded-xs uppercase shadow-xs">
-              {product.bundleBadge}
-            </span>
-          </div>
-        )}
-
-        {/* Wishlist Heart Toggle with Haptic Pop Animation */}
+        {/* Wishlist Heart Toggle */}
         <button
           type="button"
           onClick={handleToggleWishlist}
@@ -203,7 +143,7 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="text-[10px] text-gray-400 font-mono mt-1 pl-4 flex justify-between items-center">
           <span>{t('card.artNr')}: {product.sku}</span>
-          {product.ean && <span className="text-[9px] text-gray-400 font-mono">{product.ean}</span>}
+          <span className="text-[10px] text-gray-500 font-sans font-medium">VPE: {product.moq || 1}</span>
         </div>
       </div>
 
