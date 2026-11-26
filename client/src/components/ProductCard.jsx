@@ -7,6 +7,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { useToast } from '../context/ToastContext';
 import { ShoppingCart, Check, Tag, Heart } from 'lucide-react';
 import { fallbackProducts } from '../data/fallbackProducts';
+import { isProductAvailable } from '../utils/productUtils';
 
 const ProductCard = ({ product }) => {
   const { t, i18n } = useTranslation();
@@ -17,6 +18,7 @@ const ProductCard = ({ product }) => {
 
   const isGerman = i18n.language?.startsWith('de');
   const name = isGerman ? (product.name?.de || product.name?.en) : (product.name?.en || product.name?.de);
+  const isAvailable = isProductAvailable(product);
 
   const [quantity, setQuantity] = useState(product.moq || 1);
   const [added, setAdded] = useState(false);
@@ -133,6 +135,15 @@ const ProductCard = ({ product }) => {
           </span>
         </div>
 
+        {/* Coming Soon Ribbon Badge */}
+        {!isAvailable && (
+          <div className="absolute top-2 right-10 z-10">
+            <span className="bg-amber-500 text-white text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-xs shadow-xs tracking-wider">
+              {isGerman ? 'Demnächst' : 'Coming Soon'}
+            </span>
+          </div>
+        )}
+
         {/* Bundle Badge */}
         {product.bundleBadge && (
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10">
@@ -170,13 +181,19 @@ const ProductCard = ({ product }) => {
         </Link>
       </div>
 
-      {/* Title with Live Radar-Pulsing Green Stock Indicator */}
+      {/* Title with Live Radar-Pulsing Green Stock Indicator OR Coming Soon Indicator */}
       <div className="flex-1 mb-2">
         <div className="flex items-start space-x-1.5">
-          <span className="relative flex h-2.5 w-2.5 mt-1 shrink-0" title={t('card.inStock')}>
-            <span className="animate-radar absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-          </span>
+          {isAvailable ? (
+            <span className="relative flex h-2.5 w-2.5 mt-1 shrink-0" title={t('card.inStock')}>
+              <span className="animate-radar absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+          ) : (
+            <span className="relative flex h-2.5 w-2.5 mt-1 shrink-0" title={isGerman ? 'Demnächst verfügbar' : 'Coming Soon'}>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400"></span>
+            </span>
+          )}
           <Link
             to={`/product/${productId}`}
             className="text-xs font-semibold text-gray-900 hover:text-[#0B1E3F] line-clamp-2 leading-snug transition-colors"
@@ -193,97 +210,127 @@ const ProductCard = ({ product }) => {
       {/* Pricing / Purchasing Area */}
       <div className="pt-2 border-t border-gray-100 mt-auto">
         {isApproved ? (
-          <div className="space-y-1.5">
-            {/* Dual Pricing: MSRP vs Dealer Net */}
-            <div className="flex justify-between items-baseline">
-              <div>
+          isAvailable ? (
+            <div className="space-y-1.5">
+              {/* Dual Pricing: MSRP vs Dealer Net */}
+              <div className="flex justify-between items-baseline">
+                <div>
+                  <span className="text-base font-extrabold text-[#0B1E3F] tabular-nums">
+                    {formattedBasePrice}
+                  </span>
+                  {estimatedUvp && (
+                    <span className="text-[10px] text-gray-400 line-through ml-2 tabular-nums">
+                      UVP {isGerman ? `${estimatedUvp.replace('.', ',')} €` : `€${estimatedUvp}`}
+                    </span>
+                  )}
+                </div>
+                <span className="text-[10px] text-gray-500 tabular-nums">
+                  {t('card.stock')}: <strong className="text-gray-800">{product.stock}</strong> {t('card.pieces')}
+                </span>
+              </div>
+
+              {/* Tiered pricing pill with quick hover preview */}
+              {lowestTier && (
+                <div className="relative">
+                  <button
+                    type="button"
+                    onMouseEnter={() => setShowTierTooltip(true)}
+                    onMouseLeave={() => setShowTierTooltip(false)}
+                    className="w-full text-left text-[10px] text-blue-700 bg-blue-50/70 hover:bg-blue-50 border border-blue-100 rounded px-1.5 py-0.5 flex items-center justify-between cursor-help transition-colors"
+                  >
+                    <span className="flex items-center gap-1 font-medium">
+                      <Tag size={10} />
+                      <span>
+                        {isGerman
+                          ? `ab ${lowestTier.minQty} Stk: ${(lowestTier.price || basePriceNum).toFixed(2).replace('.', ',')} € *`
+                          : `from ${lowestTier.minQty} pcs: €${(lowestTier.price || basePriceNum).toFixed(2)} *`}
+                      </span>
+                    </span>
+                    <span className="text-[9px] font-bold text-blue-600">Staffel ▾</span>
+                  </button>
+
+                  {/* Micro-Tooltip for Tier Table */}
+                  {showTierTooltip && (
+                    <div className="absolute bottom-full left-0 mb-1 w-full bg-white border border-gray-300 shadow-xl rounded p-2 text-[10px] z-30 animate-dropdown">
+                      <span className="font-bold text-gray-900 block mb-1">Mengenstaffel netto:</span>
+                      {tiers.map((tp, idx) => (
+                        <div key={idx} className="flex justify-between py-0.5 border-b border-gray-100 last:border-0 tabular-nums">
+                          <span className="text-gray-600">ab {tp.minQty} Stk.</span>
+                          <strong className="text-[#0B1E3F]">
+                            {isGerman ? `${(tp.price || basePriceNum).toFixed(2).replace('.', ',')} €` : `€${(tp.price || basePriceNum).toFixed(2)}`}
+                          </strong>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <div className="flex items-center gap-1.5 pt-0.5">
+                <input
+                  type="number"
+                  min={product.moq || 1}
+                  value={quantity}
+                  onChange={(e) => setQuantity(Math.max(product.moq || 1, parseInt(e.target.value) || 1))}
+                  className="w-12 text-center text-xs border border-gray-300 py-1.5 font-bold text-gray-800 rounded-sm tabular-nums focus:border-[#0B1E3F] transition-colors"
+                />
+                <button
+                  onClick={handleAddToCart}
+                  className={`flex-1 py-1.5 px-2 rounded-sm text-xs font-bold flex items-center justify-center space-x-1 transition-all duration-200 cursor-pointer active:scale-[0.96] shadow-2xs ${
+                    added
+                      ? 'bg-emerald-600 text-white shadow-emerald-200'
+                      : 'bg-gradient-to-b from-[#102a54] to-[#0B1E3F] hover:from-[#16386b] hover:to-[#102a54] text-white hover:shadow-xs'
+                  }`}
+                >
+                  {added ? (
+                    <>
+                      <Check size={12} className="stroke-[3]" />
+                      <span>{t('card.inCart')}</span>
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingCart size={12} />
+                      <span>{t('card.buy')}</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-1.5">
+              <div className="flex justify-between items-baseline">
                 <span className="text-base font-extrabold text-[#0B1E3F] tabular-nums">
                   {formattedBasePrice}
                 </span>
-                {estimatedUvp && (
-                  <span className="text-[10px] text-gray-400 line-through ml-2 tabular-nums">
-                    UVP {isGerman ? `${estimatedUvp.replace('.', ',')} €` : `€${estimatedUvp}`}
-                  </span>
-                )}
+                <span className="text-[10px] text-amber-700 font-bold bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">
+                  {isGerman ? 'Demnächst' : 'Coming Soon'}
+                </span>
               </div>
-              <span className="text-[10px] text-gray-500 tabular-nums">
-                {t('card.stock')}: <strong className="text-gray-800">{product.stock}</strong> {t('card.pieces')}
-              </span>
-            </div>
-
-            {/* Tiered pricing pill with quick hover preview */}
-            {lowestTier && (
-              <div className="relative">
+              <div className="pt-0.5">
                 <button
                   type="button"
-                  onMouseEnter={() => setShowTierTooltip(true)}
-                  onMouseLeave={() => setShowTierTooltip(false)}
-                  className="w-full text-left text-[10px] text-blue-700 bg-blue-50/70 hover:bg-blue-50 border border-blue-100 rounded px-1.5 py-0.5 flex items-center justify-between cursor-help transition-colors"
+                  disabled
+                  className="w-full py-1.5 px-2 rounded-sm text-xs font-bold flex items-center justify-center space-x-1 bg-amber-50 text-amber-900 border border-amber-200 cursor-not-allowed select-none"
                 >
-                  <span className="flex items-center gap-1 font-medium">
-                    <Tag size={10} />
-                    <span>
-                      {isGerman
-                        ? `ab ${lowestTier.minQty} Stk: ${(lowestTier.price || basePriceNum).toFixed(2).replace('.', ',')} € *`
-                        : `from ${lowestTier.minQty} pcs: €${(lowestTier.price || basePriceNum).toFixed(2)} *`}
-                    </span>
-                  </span>
-                  <span className="text-[9px] font-bold text-blue-600">Staffel ▾</span>
+                  <span>{isGerman ? 'Demnächst verfügbar' : 'Coming Soon'}</span>
                 </button>
-
-                {/* Micro-Tooltip for Tier Table */}
-                {showTierTooltip && (
-                  <div className="absolute bottom-full left-0 mb-1 w-full bg-white border border-gray-300 shadow-xl rounded p-2 text-[10px] z-30 animate-dropdown">
-                    <span className="font-bold text-gray-900 block mb-1">Mengenstaffel netto:</span>
-                    {tiers.map((tp, idx) => (
-                      <div key={idx} className="flex justify-between py-0.5 border-b border-gray-100 last:border-0 tabular-nums">
-                        <span className="text-gray-600">ab {tp.minQty} Stk.</span>
-                        <strong className="text-[#0B1E3F]">
-                          {isGerman ? `${(tp.price || basePriceNum).toFixed(2).replace('.', ',')} €` : `€${(tp.price || basePriceNum).toFixed(2)}`}
-                        </strong>
-                      </div>
-                    ))}
-                  </div>
-                )}
               </div>
-            )}
-
-            <div className="flex items-center gap-1.5 pt-0.5">
-              <input
-                type="number"
-                min={product.moq || 1}
-                value={quantity}
-                onChange={(e) => setQuantity(Math.max(product.moq || 1, parseInt(e.target.value) || 1))}
-                className="w-12 text-center text-xs border border-gray-300 py-1.5 font-bold text-gray-800 rounded-sm tabular-nums focus:border-[#0B1E3F] transition-colors"
-              />
-              <button
-                onClick={handleAddToCart}
-                className={`flex-1 py-1.5 px-2 rounded-sm text-xs font-bold flex items-center justify-center space-x-1 transition-all duration-200 cursor-pointer active:scale-[0.96] shadow-2xs ${
-                  added
-                    ? 'bg-emerald-600 text-white shadow-emerald-200'
-                    : 'bg-gradient-to-b from-[#102a54] to-[#0B1E3F] hover:from-[#16386b] hover:to-[#102a54] text-white hover:shadow-xs'
-                }`}
-              >
-                {added ? (
-                  <>
-                    <Check size={12} className="stroke-[3]" />
-                    <span>{t('card.inCart')}</span>
-                  </>
-                ) : (
-                  <>
-                    <ShoppingCart size={12} />
-                    <span>{t('card.buy')}</span>
-                  </>
-                )}
-              </button>
             </div>
-          </div>
+          )
         ) : (
-          <div className="bg-[#fafbfc] border border-gray-200 py-2 px-2 rounded-xs text-center">
-            <span className="block text-[10px] font-bold text-gray-700">
-              {t('card.loginNotice')}
-            </span>
-          </div>
+          isAvailable ? (
+            <div className="bg-[#fafbfc] border border-gray-200 py-2 px-2 rounded-xs text-center">
+              <span className="block text-[10px] font-bold text-gray-700">
+                {t('card.loginNotice')}
+              </span>
+            </div>
+          ) : (
+            <div className="bg-amber-50/80 border border-amber-200 py-2 px-2 rounded-xs text-center">
+              <span className="block text-[10px] font-bold text-amber-900">
+                {isGerman ? 'Demnächst verfügbar' : 'Coming Soon'}
+              </span>
+            </div>
+          )
         )}
       </div>
     </div>

@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
 import { fallbackProducts } from '../data/fallbackProducts';
+import { sortAvailableFirst, isProductAvailable } from '../utils/productUtils';
 import { ShoppingCart, Check, Trash2, Plus, FileSpreadsheet, Upload, AlertCircle } from 'lucide-react';
 
 const QuickOrderPage = () => {
@@ -15,7 +16,7 @@ const QuickOrderPage = () => {
   const isGerman = i18n.language?.startsWith('de');
 
   const [activeTab, setActiveTab] = useState('table'); // 'table' or 'csv'
-  const [availableProducts, setAvailableProducts] = useState(fallbackProducts);
+  const [availableProducts, setAvailableProducts] = useState(() => sortAvailableFirst(fallbackProducts));
   const [rows, setRows] = useState([
     { id: 1, selectedId: '', quantity: 10 },
     { id: 2, selectedId: '', quantity: 10 },
@@ -25,7 +26,7 @@ const QuickOrderPage = () => {
   ]);
 
   const [csvText, setCsvText] = useState(
-    'BCA-APW-12AL42;10\nBCA-SAM-W9L350;5\nBCA-IP16P-1TB-SLV;2\nBCA-ANC-PB-3IN1-B5;20'
+    'BCA-AES-WAV-CRM;10\nBCA-AES-VNT-FLR;15\nBCA-AES-MIR-SLV;10\nBCA-AES-COQ-BOW;20'
   );
   const [csvFeedback, setCsvFeedback] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -243,11 +244,14 @@ const QuickOrderPage = () => {
                               className="w-full border border-gray-300 rounded p-1.5 text-xs text-gray-800 bg-white"
                             >
                               <option value="">{t('quickOrder.selectArticle')}</option>
-                              {availableProducts.map((p) => (
-                                <option key={p._id || p.sku} value={p._id || p.sku}>
-                                  [{p.sku}] {isGerman ? p.name?.de : p.name?.en} ({t('card.stock')}: {p.stock})
-                                </option>
-                              ))}
+                              {availableProducts.map((p) => {
+                                const avail = isProductAvailable(p);
+                                return (
+                                  <option key={p._id || p.sku} value={p._id || p.sku} disabled={!avail}>
+                                    [{p.sku}] {isGerman ? p.name?.de : p.name?.en} {avail ? `(${t('card.stock')}: ${p.stock})` : `[${isGerman ? 'Demnächst' : 'Coming Soon'}]`}
+                                  </option>
+                                );
+                              })}
                             </select>
                           </td>
                           <td className="py-2.5 px-3">

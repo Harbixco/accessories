@@ -5,7 +5,8 @@ import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { fallbackProducts } from '../data/fallbackProducts';
-import { ArrowRight } from 'lucide-react';
+import { sortAvailableFirst } from '../utils/productUtils';
+import { ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
 
 const HomePage = () => {
   const { t, i18n } = useTranslation();
@@ -39,23 +40,28 @@ const HomePage = () => {
 
   const categoryChips = [
     { key: 'All', de: 'Alle Artikel', en: 'All Articles' },
-    { key: 'Smartwatches & Wearables', de: 'Smartwatches', en: 'Smartwatches' },
-    { key: 'Smartphones & Endgeräte', de: 'Smartphones', en: 'Smartphones' },
-    { key: 'Cases & Covers', de: 'Cases & Schutz', en: 'Cases & Protection' },
-    { key: 'Power & Charging', de: 'Laden & Qi2', en: 'Charging & Qi2' },
-    { key: 'Cables & Adapters', de: 'Kabel & Adapter', en: 'Cables & Adapters' },
+    { key: 'Cases & Covers', de: 'Aesthetic iPhone Hüllen (Lieferbar)', en: 'Aesthetic iPhone Cases (In Stock)' },
+    { key: 'Smartwatches & Wearables', de: 'Smartwatches (Demnächst)', en: 'Smartwatches (Coming Soon)' },
+    { key: 'Smartphones & Endgeräte', de: 'Smartphones (Demnächst)', en: 'Smartphones (Coming Soon)' },
+    { key: 'Power & Charging', de: 'Laden & Qi2 (Demnächst)', en: 'Power & Charging (Coming Soon)' },
+    { key: 'Cables & Adapters', de: 'Kabel (Demnächst)', en: 'Cables (Coming Soon)' },
   ];
 
+  const sortedProducts = sortAvailableFirst(products);
   const filteredProducts =
     selectedCategory === 'All'
-      ? products
-      : products.filter((p) => p.category === selectedCategory);
+      ? sortedProducts
+      : sortedProducts.filter((p) => p.category === selectedCategory);
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
       {/* 1. TOP B2B HERO BANNER */}
       <section className="bg-[#0B1E3F] text-white rounded p-6 sm:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border border-[#162e5b]">
         <div className="space-y-2 max-w-2xl">
+          <div className="inline-flex items-center gap-1.5 bg-[#00d2c4]/20 border border-[#00d2c4]/40 px-2.5 py-1 rounded text-[11px] font-bold text-[#00d2c4]">
+            <Sparkles size={13} />
+            <span>{isGerman ? 'Aesthetic iPhone Cases • Jetzt sofort ab Lager lieferbar' : 'Aesthetic iPhone Cases • In Stock & Ready to Ship'}</span>
+          </div>
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-normal leading-snug text-white">
             {t('home.title')}
           </h1>
@@ -71,12 +77,12 @@ const HomePage = () => {
           >
             {t('home.ctaRegister')}
           </Link>
-          <Link
-            to="/catalog"
-            className="bg-white/10 hover:bg-white/20 text-white border border-white/25 text-xs font-semibold px-4 py-2.5 rounded transition text-center whitespace-nowrap active:scale-[0.98]"
+          <button
+            onClick={() => setSelectedCategory('Cases & Covers')}
+            className="bg-white/10 hover:bg-white/20 text-white border border-white/25 text-xs font-semibold px-4 py-2.5 rounded transition text-center whitespace-nowrap active:scale-[0.98] cursor-pointer"
           >
-            {t('home.ctaCatalog')}
-          </Link>
+            {isGerman ? 'iPhone Hüllen ansehen' : 'View iPhone Cases'}
+          </button>
         </div>
       </section>
 
@@ -111,7 +117,7 @@ const HomePage = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filteredProducts.slice(0, 12).map((p, idx) => (
+          {filteredProducts.slice(0, 24).map((p, idx) => (
             <ProductCard key={p._id || p.sku || idx} product={p} />
           ))}
         </div>

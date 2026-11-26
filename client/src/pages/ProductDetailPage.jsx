@@ -8,6 +8,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { useToast } from '../context/ToastContext';
 import TieredPriceTable from '../components/TieredPriceTable';
 import { fallbackProducts } from '../data/fallbackProducts';
+import { isProductAvailable } from '../utils/productUtils';
 import { ShoppingCart, Check, ChevronRight, Heart } from 'lucide-react';
 
 const ProductDetailPage = () => {
@@ -23,6 +24,7 @@ const ProductDetailPage = () => {
   const [product, setProduct] = useState(() => {
     return fallbackProducts.find((p) => p._id === id || p.sku === id) || fallbackProducts[0];
   });
+  const isAvailable = isProductAvailable(product);
   const [quantity, setQuantity] = useState(product?.moq || 1);
   const [added, setAdded] = useState(false);
   const [heartAnimating, setHeartAnimating] = useState(false);
@@ -148,15 +150,24 @@ const ProductDetailPage = () => {
             </div>
           </div>
 
-          <div className="text-xs text-gray-700 flex items-center space-x-2">
-            <span className="relative flex h-2.5 w-2.5 shrink-0">
-              <span className="animate-radar absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-            </span>
-            <span className="font-medium">
-              {t('product.readyToShip')} • {t('product.stockLevel')}: {product.stock} {t('product.units')}
-            </span>
-          </div>
+          {isAvailable ? (
+            <div className="text-xs text-gray-700 flex items-center space-x-2">
+              <span className="relative flex h-2.5 w-2.5 shrink-0">
+                <span className="animate-radar absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+              </span>
+              <span className="font-medium">
+                {t('product.readyToShip')} • {t('product.stockLevel')}: {product.stock} {t('product.units')}
+              </span>
+            </div>
+          ) : (
+            <div className="text-xs text-amber-900 flex items-center space-x-2 bg-amber-50 border border-amber-200 px-3 py-1.5 rounded">
+              <span className="h-2 w-2 rounded-full bg-amber-500 shrink-0"></span>
+              <span className="font-bold">
+                {isGerman ? 'Demnächst verfügbar • Diese Modellreihe wird in Kürze freigeschaltet' : 'Coming Soon • This product line will be available soon'}
+              </span>
+            </div>
+          )}
 
           {product.compatibleDevices && product.compatibleDevices.length > 0 && (
             <div className="text-xs text-gray-700">
@@ -198,33 +209,45 @@ const ProductDetailPage = () => {
                   </div>
 
                   <div className="flex items-center gap-2 w-full sm:w-auto">
-                    <input
-                      type="number"
-                      min={product.moq || 1}
-                      value={quantity}
-                      onChange={(e) => setQuantity(Math.max(product.moq || 1, parseInt(e.target.value) || 1))}
-                      className="w-16 border border-gray-300 rounded p-2 text-center text-xs font-bold text-gray-800"
-                    />
-                    <button
-                      onClick={handleAddToCart}
-                      className={`flex-1 sm:flex-none px-6 py-2.5 rounded text-xs font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer ${
-                        added
-                          ? 'bg-emerald-600 text-white'
-                          : 'bg-[#0B1E3F] hover:bg-[#162e5b] text-white'
-                      }`}
-                    >
-                      {added ? (
-                        <>
-                          <Check size={14} />
-                          <span>{t('product.added')}</span>
-                        </>
-                      ) : (
-                        <>
-                          <ShoppingCart size={14} />
-                          <span>{t('product.addToCart')}</span>
-                        </>
-                      )}
-                    </button>
+                    {isAvailable ? (
+                      <>
+                        <input
+                          type="number"
+                          min={product.moq || 1}
+                          value={quantity}
+                          onChange={(e) => setQuantity(Math.max(product.moq || 1, parseInt(e.target.value) || 1))}
+                          className="w-16 border border-gray-300 rounded p-2 text-center text-xs font-bold text-gray-800"
+                        />
+                        <button
+                          onClick={handleAddToCart}
+                          className={`flex-1 sm:flex-none px-6 py-2.5 rounded text-xs font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer ${
+                            added
+                              ? 'bg-emerald-600 text-white'
+                              : 'bg-[#0B1E3F] hover:bg-[#162e5b] text-white'
+                          }`}
+                        >
+                          {added ? (
+                            <>
+                              <Check size={14} />
+                              <span>{t('product.added')}</span>
+                            </>
+                          ) : (
+                            <>
+                              <ShoppingCart size={14} />
+                              <span>{t('product.addToCart')}</span>
+                            </>
+                          )}
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        type="button"
+                        disabled
+                        className="px-6 py-2.5 rounded text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 cursor-not-allowed select-none"
+                      >
+                        {isGerman ? 'Demnächst verfügbar' : 'Coming Soon'}
+                      </button>
+                    )}
                     <button
                       type="button"
                       onClick={handleToggleWishlist}

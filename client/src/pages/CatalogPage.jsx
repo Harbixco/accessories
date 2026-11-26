@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { fallbackProducts } from '../data/fallbackProducts';
+import { sortAvailableFirst } from '../utils/productUtils';
 import { ChevronRight, ChevronLeft, Filter, ChevronDown } from 'lucide-react';
 
 const PRODUCTS_PER_PAGE = 60;
@@ -34,13 +35,13 @@ const CatalogPage = () => {
   const isGerman = i18n.language?.startsWith('de');
 
   const categories = [
-    { key: 'Smartwatches & Wearables', de: 'Smartwatches & Wearables', en: 'Smartwatches & Wearables' },
-    { key: 'Smartphones & Endgeräte', de: 'Smartphones & Endgeräte', en: 'Smartphones & Devices' },
-    { key: 'Tablets & Zubehör', de: 'Tablets & Zubehör', en: 'Tablets & Accessories' },
-    { key: 'Cases & Covers', de: 'Cases & Covers', en: 'Cases & Covers' },
-    { key: 'Power & Charging', de: 'Laden & Stromversorgung', en: 'Power & Charging' },
-    { key: 'Cables & Adapters', de: 'Kabel & Adapter', en: 'Cables & Adapters' },
-    { key: 'Gadgets & Mounts', de: 'Gadgets & Halterungen', en: 'Gadgets & Mounts' },
+    { key: 'Cases & Covers', de: 'Cases & Covers (Lieferbar)', en: 'Cases & Covers (In Stock)', inStock: true },
+    { key: 'Smartwatches & Wearables', de: 'Smartwatches & Wearables (Demnächst)', en: 'Smartwatches & Wearables (Coming Soon)', inStock: false },
+    { key: 'Smartphones & Endgeräte', de: 'Smartphones & Endgeräte (Demnächst)', en: 'Smartphones & Devices (Coming Soon)', inStock: false },
+    { key: 'Tablets & Zubehör', de: 'Tablets & Zubehör (Demnächst)', en: 'Tablets & Accessories (Coming Soon)', inStock: false },
+    { key: 'Power & Charging', de: 'Laden & Stromversorgung (Demnächst)', en: 'Power & Charging (Coming Soon)', inStock: false },
+    { key: 'Cables & Adapters', de: 'Kabel & Adapter (Demnächst)', en: 'Cables & Adapters (Coming Soon)', inStock: false },
+    { key: 'Gadgets & Mounts', de: 'Gadgets & Halterungen (Demnächst)', en: 'Gadgets & Mounts (Coming Soon)', inStock: false },
   ];
 
   const brands = ['Apple', 'Samsung', 'Otterbox', 'anco', 'Xiaomi', 'Motorola', 'PopSockets', 'Guess'];
@@ -98,7 +99,8 @@ const CatalogPage = () => {
               tieredPricing: (p.tieredPricing && p.tieredPricing.length > 0) ? p.tieredPricing : (fb?.tieredPricing || []),
             };
           });
-          setProducts(merged);
+          const sorted = sortAvailableFirst(merged);
+          setProducts(sorted);
           setTotal(res.data.total);
           setTotalPages(res.data.pages || Math.ceil(res.data.total / PRODUCTS_PER_PAGE) || 1);
           return;
@@ -128,6 +130,7 @@ const CatalogPage = () => {
             p.sku.toLowerCase().includes(s)
         );
       }
+      filtered = sortAvailableFirst(filtered);
       setTotal(filtered.length);
       const computedPages = Math.ceil(filtered.length / PRODUCTS_PER_PAGE) || 1;
       setTotalPages(computedPages);

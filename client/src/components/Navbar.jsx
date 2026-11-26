@@ -407,6 +407,20 @@ const Navbar = () => {
               </Link>
             </li>
 
+            {/* Aesthetic iPhone Cases - Featured & In Stock */}
+            <li>
+              <Link 
+                to="/catalog?category=Cases%20%26%20Covers" 
+                className="text-[#0B1E3F] hover:text-[#00bfae] font-extrabold transition flex items-center space-x-1.5"
+              >
+                <Sparkles size={13} className="text-[#00d2c4]" />
+                <span>{isGerman ? 'Aesthetic iPhone Hüllen' : 'Aesthetic iPhone Cases'}</span>
+                <span className="bg-[#00d2c4] text-[#061224] text-[9px] font-black px-1.5 py-0.2 rounded-xs uppercase tracking-wider">
+                  {isGerman ? 'Lieferbar' : 'In Stock'}
+                </span>
+              </Link>
+            </li>
+
             {/* products */}
             <li onMouseEnter={() => handleMouseEnterNav('products')}>
               <Link 

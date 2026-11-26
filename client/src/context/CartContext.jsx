@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { fallbackProducts } from '../data/fallbackProducts';
+import { isProductAvailable } from '../utils/productUtils';
 
 const CartContext = createContext();
 
@@ -46,6 +47,9 @@ export const CartProvider = ({ children }) => {
   };
 
   const addToCart = (product, quantity = null, openDrawer = true) => {
+    if (!product || !isProductAvailable(product)) {
+      return;
+    }
     const qtyToAdd = quantity || product.moq || 1;
 
     setItems((prevItems) => {
