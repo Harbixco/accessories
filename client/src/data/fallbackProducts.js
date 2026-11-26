@@ -1,881 +1,383 @@
 export const fallbackProducts = [
   {
-    "sku": "BCA-AES-WAV-CRM",
-    "ean": "4061279502001",
+    "sku": "BCA-LAP-MBP16-M3",
+    "ean": "4061279503001",
     "name": {
-      "de": "anco Aesthetic Wavy Scalloped Hülle für iPhone 16 Pro Max - Creme Weiß mit Schleifen-Print",
-      "en": "anco Aesthetic Wavy Scalloped Silicone Case for iPhone 16 Pro Max - Cream White & Ribbon Bows"
+      "de": "Apple MacBook Pro 16 Zoll M3 Pro (18 GB RAM, 512 GB SSD) - Space Schwarz",
+      "en": "Apple MacBook Pro 16-inch M3 Pro (18GB RAM, 512GB SSD) - Space Black"
     },
     "description": {
-      "de": "Trendige Aesthetic Schutzhülle mit gewellter Soft-Touch Kontur und zartem Coquette-Schleifenmotiv. Erhöhter Kameraschutz und stoßdämpfendes Flüssigsilikon.",
-      "en": "Trending aesthetic protective phone case featuring a wavy scalloped grip bumper and delicate coquette ribbon bows. Elevated camera bezel and shock-absorbing liquid silicone."
+      "de": "Apple M3 Pro Chip mit 12-Core CPU und 18-Core GPU, 16,2 Zoll Liquid Retina XDR Display, 18 GB gemeinsamer Speicher, 512 GB SSD. Deutsche Fachhandelsware mit voller Apple Herstellergarantie.",
+      "en": "Apple M3 Pro chip with 12-core CPU and 18-core GPU, 16.2-inch Liquid Retina XDR display, 18GB unified memory, 512GB SSD. Official EU retail stock with full Apple warranty."
     },
-    "brand": "anco",
-    "category": "Cases & Covers",
+    "brand": "Apple",
+    "category": "Laptops & Notebooks",
     "compatibleDevices": [
-      "iPhone 16 Pro Max",
-      "iPhone 15 Pro Max",
-      "iPhone 16 Pro",
-      "iPhone 15 Pro"
+      "MacBook Pro",
+      "macOS Sonoma",
+      "macOS Sequoia"
     ],
     "images": [
-      "/products/aesthetic/aesthetic-case-1.jpg"
+      "/products/laptops/laptop-macbook-pro.jpg"
     ],
-    "stock": 240,
-    "moq": 5,
-    "basePrice": 6.9,
+    "stock": 35,
+    "moq": 1,
+    "basePrice": 2149,
     "tieredPricing": [
       {
+        "minQty": 3,
+        "price": 2089
+      },
+      {
+        "minQty": 5,
+        "price": 1999
+      },
+      {
         "minQty": 10,
-        "price": 5.9
-      },
-      {
-        "minQty": 50,
-        "price": 4.9
-      },
-      {
-        "minQty": 100,
-        "price": 4.2
+        "price": 1949
       }
     ],
     "features": [
-      "Aesthetic",
-      "Soft-Touch",
-      "Shockproof",
-      "Raised Bezel"
+      "Apple M3 Pro",
+      "Liquid Retina XDR",
+      "18GB RAM",
+      "512GB SSD"
     ],
     "isPopular": true,
     "isNewArrival": true,
     "isAvailable": true
   },
   {
-    "sku": "BCA-AES-VNT-FLR",
-    "ean": "4061279502002",
+    "sku": "BCA-LAP-MBA15-M3",
+    "ean": "4061279503002",
     "name": {
-      "de": "anco Aesthetic Vintage Floral Ölgemälde Hülle für iPhone 16 Pro - Französischer Barockgarten",
-      "en": "anco Aesthetic Vintage Floral Oil Painting Case for iPhone 16 Pro - French Baroque Garden"
+      "de": "Apple MacBook Air 15 Zoll M3 (16 GB RAM, 512 GB SSD) - Mitternacht (Midnight)",
+      "en": "Apple MacBook Air 15-inch M3 (16GB RAM, 512GB SSD) - Midnight"
     },
     "description": {
-      "de": "Exklusives Vintage Cottagecore Design mit mattem Ölgemälde-Kunstdruck. Robuster Hybrid-Rücken mit kratzfester IMD-Oberflächenversiegelung.",
-      "en": "Exclusive vintage cottagecore botanical design featuring matte oil-painting artwork. Durable hybrid backplate with scratch-resistant in-mold decoration (IMD)."
+      "de": "Schlankes 15,3 Zoll Liquid Retina Display, Apple M3 8-Core CPU & 10-Core GPU, 16 GB RAM, 512 GB SSD Speicher. Lüfterloses geräuschloses Design mit bis zu 18 Stunden Akkulaufzeit.",
+      "en": "Ultra-thin 15.3-inch Liquid Retina display, Apple M3 8-core CPU & 10-core GPU, 16GB RAM, 512GB SSD. Fanless silent design with up to 18 hours of battery life."
     },
-    "brand": "anco",
-    "category": "Cases & Covers",
+    "brand": "Apple",
+    "category": "Laptops & Notebooks",
     "compatibleDevices": [
-      "iPhone 16 Pro",
-      "iPhone 15 Pro",
-      "iPhone 16",
-      "iPhone 15"
+      "MacBook Air",
+      "macOS Sonoma",
+      "macOS Sequoia"
     ],
     "images": [
-      "/products/aesthetic/aesthetic-case-2.jpg"
+      "/products/laptops/laptop-macbook-air.jpg"
     ],
-    "stock": 180,
-    "moq": 5,
-    "basePrice": 7.2,
+    "stock": 48,
+    "moq": 1,
+    "basePrice": 1489,
     "tieredPricing": [
       {
+        "minQty": 3,
+        "price": 1439
+      },
+      {
+        "minQty": 5,
+        "price": 1389
+      },
+      {
         "minQty": 10,
-        "price": 6.2
-      },
-      {
-        "minQty": 50,
-        "price": 5.1
-      },
-      {
-        "minQty": 100,
-        "price": 4.5
+        "price": 1349
       }
     ],
     "features": [
-      "Vintage Art",
-      "IMD Coating",
-      "Anti-Scratch",
-      "Slim Fit"
+      "Apple M3",
+      "15.3\" Retina",
+      "16GB RAM",
+      "512GB SSD"
     ],
     "isPopular": true,
     "isNewArrival": true,
     "isAvailable": true
   },
   {
-    "sku": "BCA-AES-MIR-SLV",
-    "ean": "4061279502003",
+    "sku": "BCA-LAP-THK-X1C",
+    "ean": "4061279503003",
     "name": {
-      "de": "anco Aesthetic Y2K Liquid Chrome Spiegel-Hülle für iPhone 16 Pro Max - Silber Metallic",
-      "en": "anco Aesthetic Y2K Liquid Chrome Mirror Frame Case for iPhone 16 Pro Max - Silver Metallic"
+      "de": "Lenovo ThinkPad X1 Carbon Gen 12 (Intel Core Ultra 7, 32 GB RAM, 1 TB SSD) - Deep Black",
+      "en": "Lenovo ThinkPad X1 Carbon Gen 12 (Intel Core Ultra 7, 32GB RAM, 1TB SSD) - Deep Black"
     },
     "description": {
-      "de": "Futuristischer Y2K Spiegel-Effekt mit hochglänzend galvanisiertem Chromrand. Perfekt für Selfies mit vollem Kantenschutz.",
-      "en": "Futuristic Y2K mirror reflection backplate with electroplated liquid chrome bumper. Perfect for mirror selfies with complete edge cushioning."
+      "de": "Legendäres B2B Business Ultrabook mit Kohlefaser-Gehäuse, Intel Core Ultra 7 155H, 32 GB LPDDR5X RAM, 1 TB NVMe SSD, 14 Zoll 2.8K OLED Display (120 Hz) und Windows 11 Pro.",
+      "en": "Flagship enterprise ultrabook built with carbon-fiber chassis, Intel Core Ultra 7 155H, 32GB LPDDR5X RAM, 1TB NVMe SSD, 14-inch 2.8K OLED (120Hz) display, and Windows 11 Pro."
     },
-    "brand": "anco",
-    "category": "Cases & Covers",
+    "brand": "Lenovo",
+    "category": "Laptops & Notebooks",
     "compatibleDevices": [
-      "iPhone 16 Pro Max",
-      "iPhone 16 Pro",
-      "iPhone 15 Pro Max",
-      "iPhone 15 Pro"
+      "Windows 11 Pro",
+      "Thunderbolt 4",
+      "Wi-Fi 7"
     ],
     "images": [
-      "/products/aesthetic/aesthetic-case-3.jpg"
+      "/products/laptops/laptop-thinkpad.jpg"
     ],
-    "stock": 195,
-    "moq": 5,
-    "basePrice": 7.5,
+    "stock": 28,
+    "moq": 1,
+    "basePrice": 1890,
     "tieredPricing": [
       {
+        "minQty": 3,
+        "price": 1820
+      },
+      {
+        "minQty": 5,
+        "price": 1750
+      },
+      {
         "minQty": 10,
-        "price": 6.4
-      },
-      {
-        "minQty": 50,
-        "price": 5.3
-      },
-      {
-        "minQty": 100,
-        "price": 4.6
+        "price": 1690
       }
     ],
     "features": [
-      "Mirror Effect",
-      "Electroplated",
-      "Y2K Chrome",
-      "Air-Cushion"
+      "Intel Core Ultra 7",
+      "14\" 2.8K OLED",
+      "32GB RAM",
+      "1TB SSD"
     ],
     "isPopular": true,
     "isNewArrival": true,
     "isAvailable": true
   },
   {
-    "sku": "BCA-AES-COQ-BOW",
-    "ean": "4061279502004",
+    "sku": "BCA-LAP-DEL-XPS15",
+    "ean": "4061279503004",
     "name": {
-      "de": "anco Aesthetic Coquette 3D Bow & Pearl Charm Case für iPhone 15 Pro - Zartrosa",
-      "en": "anco Aesthetic Coquette 3D Bow & Pearl Charm Clear Case for iPhone 15 Pro - Soft Pink"
+      "de": "Dell XPS 15 9530 OLED (Intel Core i7-13700H, 32 GB RAM, 1 TB SSD, RTX 4050) - Platin Silber",
+      "en": "Dell XPS 15 9530 OLED (Intel Core i7-13700H, 32GB RAM, 1TB SSD, RTX 4050) - Platinum Silver"
     },
     "description": {
-      "de": "Pinterest-Liebling: Coquette Ballettcore Hülle mit plastischen 3D-Bögen, Perlenkette und kristallklarem Glanzkörper.",
-      "en": "Pinterest favorite: Coquette balletcore aesthetic case with tactile 3D resin ribbons, pearl charm chain, and crystal-clear high-transparency shell."
+      "de": "Premium Creator Laptop mit CNC-gefrästem Aluminiumgehäuse, 15,6 Zoll 3.5K OLED InfinityEdge Touchscreen, NVIDIA GeForce RTX 4050 Grafik und Waves MaxxAudio Sound.",
+      "en": "Premium creator laptop crafted with CNC machined aluminum, 15.6-inch 3.5K OLED InfinityEdge touchscreen, NVIDIA GeForce RTX 4050 graphics, and studio-grade sound."
     },
-    "brand": "anco",
-    "category": "Cases & Covers",
+    "brand": "Dell",
+    "category": "Laptops & Notebooks",
     "compatibleDevices": [
-      "iPhone 15 Pro",
-      "iPhone 16 Pro",
-      "iPhone 15",
-      "iPhone 14 Pro"
+      "Windows 11 Pro",
+      "NVIDIA Studio",
+      "Thunderbolt 4"
     ],
     "images": [
-      "/products/aesthetic/aesthetic-case-4.jpg"
+      "/products/laptops/laptop-dell-xps.jpg"
     ],
-    "stock": 210,
-    "moq": 5,
-    "basePrice": 7.9,
+    "stock": 22,
+    "moq": 1,
+    "basePrice": 1950,
     "tieredPricing": [
       {
+        "minQty": 3,
+        "price": 1880
+      },
+      {
+        "minQty": 5,
+        "price": 1790
+      },
+      {
         "minQty": 10,
-        "price": 6.7
-      },
-      {
-        "minQty": 50,
-        "price": 5.5
-      },
-      {
-        "minQty": 100,
-        "price": 4.8
+        "price": 1740
       }
     ],
     "features": [
-      "3D Resin Bow",
-      "Pearl Charm",
-      "Crystal Clear",
-      "Non-Yellowing"
+      "3.5K OLED Touch",
+      "RTX 4050 GPU",
+      "32GB RAM",
+      "1TB NVMe"
     ],
     "isPopular": true,
     "isNewArrival": true,
     "isAvailable": true
   },
   {
-    "sku": "BCA-AES-PUF-LAT",
-    "ean": "4061279502005",
+    "sku": "BCA-LAP-MBA13-SLV",
+    "ean": "4061279503005",
     "name": {
-      "de": "anco Aesthetic Puffer Cloud Down Case für iPhone 16 Pro Max - Latte Macchiato Beige",
-      "en": "anco Aesthetic Puffer Cloud Down Jacket Case for iPhone 16 Pro Max - Latte Beige"
+      "de": "Apple MacBook Air 13 Zoll M3 (8 GB RAM, 256 GB SSD) - Silber",
+      "en": "Apple MacBook Air 13-inch M3 (8GB RAM, 256GB SSD) - Silver"
     },
     "description": {
-      "de": "Gesteppte Puffer Daunenjacken-Optik mit butterweicher Haptik. Liegt angenehm in der Hand und absorbiert Stöße zuverlässig.",
-      "en": "Quilted down-jacket puffer aesthetic with buttery-soft tactile texture. Ultra-comfortable in hand with heavy-duty drop dispersion."
+      "de": "Kompakter Allrounder für Büro und Unterwegs mit 13,6 Zoll Liquid Retina Display, Apple M3 8-Core CPU & 8-Core GPU, MagSafe 3 Ladeanschluss und 1080p FaceTime HD Kamera.",
+      "en": "Ultra-portable powerhouse with 13.6-inch Liquid Retina display, Apple M3 8-core CPU & 8-core GPU, MagSafe 3 charging, and 1080p FaceTime HD camera."
     },
-    "brand": "anco",
-    "category": "Cases & Covers",
+    "brand": "Apple",
+    "category": "Laptops & Notebooks",
     "compatibleDevices": [
-      "iPhone 16 Pro Max",
-      "iPhone 16 Pro",
-      "iPhone 15 Pro Max",
-      "iPhone 15 Pro"
+      "MacBook Air",
+      "macOS Sonoma",
+      "macOS Sequoia"
     ],
     "images": [
-      "/products/aesthetic/aesthetic-case-5.jpg"
+      "/products/laptops/laptop-macbook-silver.jpg"
     ],
-    "stock": 310,
-    "moq": 5,
-    "basePrice": 6.8,
+    "stock": 65,
+    "moq": 1,
+    "basePrice": 1099,
     "tieredPricing": [
       {
+        "minQty": 3,
+        "price": 1059
+      },
+      {
+        "minQty": 5,
+        "price": 999
+      },
+      {
         "minQty": 10,
-        "price": 5.8
-      },
-      {
-        "minQty": 50,
-        "price": 4.8
-      },
-      {
-        "minQty": 100,
-        "price": 4.1
+        "price": 959
       }
     ],
     "features": [
-      "Puffer Down",
-      "Soft-Touch",
-      "Drop Protection",
-      "Lightweight"
+      "Apple M3",
+      "13.6\" Retina",
+      "MagSafe 3",
+      "Fanless"
     ],
     "isPopular": true,
     "isNewArrival": true,
     "isAvailable": true
   },
   {
-    "sku": "BCA-AES-CLN-SGE",
-    "ean": "4061279502006",
+    "sku": "BCA-LAP-MS-SRF6",
+    "ean": "4061279503006",
     "name": {
-      "de": "anco Clean Girl Aesthetic Matte Liquid Silicone Hülle für iPhone 16 - Salbeigrün (Sage Green)",
-      "en": "anco Clean Girl Aesthetic Matte Liquid Silicone Case for iPhone 16 - Sage Green"
+      "de": "Microsoft Surface Laptop 6 for Business 13,5 Zoll (Intel Core Ultra 7, 16 GB, 512 GB) - Platin",
+      "en": "Microsoft Surface Laptop 6 for Business 13.5-inch (Intel Core Ultra 7, 16GB, 512GB) - Platinum"
     },
     "description": {
-      "de": "Minimalistisches Clean-Girl-Design aus seidenmattem Flüssigsilikon mit weichem Mikrofaser-Innenfutter und Anti-Fingerprint Beschichtung.",
-      "en": "Minimalist Clean Girl aesthetic crafted from silky-matte liquid silicone with plush microfiber lining and anti-fingerprint oleophobic coating."
+      "de": "Business-Notebook mit 13,5 Zoll PixelSense Touchscreen im 3:2 Seitenverhältnis, Intel Core Ultra 7 165H NPU-Copilot KI-Beschleunigung und Windows 11 Pro.",
+      "en": "Business laptop featuring a 13.5-inch PixelSense 3:2 touchscreen, Intel Core Ultra 7 165H with AI NPU Copilot acceleration, and enterprise Windows 11 Pro."
     },
-    "brand": "anco",
-    "category": "Cases & Covers",
+    "brand": "Microsoft",
+    "category": "Laptops & Notebooks",
     "compatibleDevices": [
-      "iPhone 16",
-      "iPhone 16 Plus",
-      "iPhone 15",
-      "iPhone 14"
+      "Windows 11 Pro",
+      "Surface Connect",
+      "USB-C Thunderbolt 4"
     ],
     "images": [
-      "/products/aesthetic/aesthetic-case-6.jpg"
+      "/products/laptops/laptop-surface.jpg"
     ],
-    "stock": 420,
-    "moq": 5,
-    "basePrice": 5.9,
+    "stock": 30,
+    "moq": 1,
+    "basePrice": 1420,
     "tieredPricing": [
       {
+        "minQty": 3,
+        "price": 1370
+      },
+      {
+        "minQty": 5,
+        "price": 1310
+      },
+      {
         "minQty": 10,
-        "price": 4.9
-      },
-      {
-        "minQty": 50,
-        "price": 4.1
-      },
-      {
-        "minQty": 100,
-        "price": 3.5
+        "price": 1260
       }
     ],
     "features": [
-      "Clean Girl",
-      "Microfiber Lining",
-      "Liquid Silicone",
-      "Anti-Smudge"
+      "Intel Core Ultra 7",
+      "PixelSense Touch",
+      "Copilot AI NPU",
+      "16GB RAM"
     ],
     "isPopular": true,
     "isNewArrival": true,
     "isAvailable": true
   },
   {
-    "sku": "BCA-AES-BOT-RES",
-    "ean": "4061279502007",
+    "sku": "BCA-LAP-HP-ELT840",
+    "ean": "4061279503007",
     "name": {
-      "de": "anco Aesthetic Botanical Pressed Wildflower Harzhülle für iPhone 15 Pro Max - Frühlingswiese",
-      "en": "anco Aesthetic Botanical Real Pressed Wildflower Resin Case for iPhone 15 Pro Max - Floral Meadow"
+      "de": "HP EliteBook 840 G10 (Intel Core i7-1355U, 16 GB RAM, 512 GB SSD) - Natural Silver",
+      "en": "HP EliteBook 840 G10 (Intel Core i7-1355U, 16GB RAM, 512GB SSD) - Natural Silver"
     },
     "description": {
-      "de": "Echte getrocknete Wiesenblumen in glasklarem Epoxidharz gegossen. Jede Hülle ist ein natürliches botanisches Unikat.",
-      "en": "Real dried wildflowers encased in crystal-clear hand-poured epoxy resin. Each phone case is a one-of-a-kind natural botanical art piece."
+      "de": "Zuverlässiges Enterprise-Notebook mit 14 Zoll WUXGA Display, Intel Core i7 Prozessor, 16 GB DDR5 RAM, 512 GB PCIe SSD, HP Wolf Security und 5MP Kamera.",
+      "en": "Enterprise-grade laptop featuring a 14-inch WUXGA anti-glare display, Intel Core i7 processor, 16GB DDR5 RAM, 512GB PCIe SSD, HP Wolf Security, and 5MP webcam."
     },
-    "brand": "anco",
-    "category": "Cases & Covers",
+    "brand": "HP",
+    "category": "Laptops & Notebooks",
     "compatibleDevices": [
-      "iPhone 15 Pro Max",
-      "iPhone 16 Pro Max",
-      "iPhone 15 Pro",
-      "iPhone 14 Pro Max"
+      "Windows 11 Pro",
+      "HP Wolf Security",
+      "Thunderbolt 4"
     ],
     "images": [
-      "/products/aesthetic/aesthetic-case-7.jpg"
+      "/products/laptops/laptop-hp-elitebook.jpg"
     ],
-    "stock": 160,
-    "moq": 5,
-    "basePrice": 7.4,
+    "stock": 40,
+    "moq": 1,
+    "basePrice": 1290,
     "tieredPricing": [
       {
+        "minQty": 3,
+        "price": 1240
+      },
+      {
+        "minQty": 5,
+        "price": 1180
+      },
+      {
         "minQty": 10,
-        "price": 6.3
-      },
-      {
-        "minQty": 50,
-        "price": 5.2
-      },
-      {
-        "minQty": 100,
-        "price": 4.4
+        "price": 1130
       }
     ],
     "features": [
-      "Real Flowers",
-      "Handcrafted Art",
-      "UV Resistant",
-      "Crystal Clear"
+      "Intel Core i7",
+      "HP Wolf Security",
+      "14\" WUXGA",
+      "16GB DDR5"
     ],
     "isPopular": true,
     "isNewArrival": true,
     "isAvailable": true
   },
   {
-    "sku": "BCA-AES-CHK-RET",
-    "ean": "4061279502008",
+    "sku": "BCA-LAP-ASU-ZEN14",
+    "ean": "4061279503008",
     "name": {
-      "de": "anco Aesthetic Retro Y2K Checkerboard & Smiley Hülle für iPhone 16 Pro - Mokka & Cream",
-      "en": "anco Aesthetic Retro Y2K Checkerboard & Smiley Case for iPhone 16 Pro - Mocha & Cream"
+      "de": "ASUS Zenbook 14 OLED (Intel Core Ultra 7, 16 GB RAM, 1 TB SSD) - Ponder Blue",
+      "en": "ASUS Zenbook 14 OLED (Intel Core Ultra 7, 16GB RAM, 1TB SSD) - Ponder Blue"
     },
     "description": {
-      "de": "Nostalgisches 90s Schachbrett-Muster kombiniert mit warmen Erdtönen und verspielten Smiley-Akzenten. Strapazierfähiges flexibles TPU.",
-      "en": "Nostalgic 90s checkerboard pattern blended with warm neutral earth tones and playful smileys. Durable flexible TPU shock absorber."
+      "de": "Schlankes 1,2 kg Leichtgewicht mit atemberaubendem 14 Zoll 3K 120Hz Lumina OLED Display, 75 Wh Akku, Intel Core Ultra 7 mit KI-Engine und Harman Kardon Sound.",
+      "en": "Ultra-light 1.2 kg design with stunning 14-inch 3K 120Hz Lumina OLED display, 75Wh battery, Intel Core Ultra 7 with AI engine, and Harman Kardon audio."
     },
-    "brand": "anco",
-    "category": "Cases & Covers",
+    "brand": "ASUS",
+    "category": "Laptops & Notebooks",
     "compatibleDevices": [
-      "iPhone 16 Pro",
-      "iPhone 16",
-      "iPhone 15 Pro",
-      "iPhone 15"
+      "Windows 11 Home/Pro",
+      "Harman Kardon",
+      "Thunderbolt 4"
     ],
     "images": [
-      "/products/aesthetic/aesthetic-case-8.jpg"
+      "/products/laptops/laptop-asus-zenbook.jpg"
     ],
-    "stock": 280,
-    "moq": 5,
-    "basePrice": 6.5,
+    "stock": 34,
+    "moq": 1,
+    "basePrice": 1150,
     "tieredPricing": [
       {
+        "minQty": 3,
+        "price": 1100
+      },
+      {
+        "minQty": 5,
+        "price": 1040
+      },
+      {
         "minQty": 10,
-        "price": 5.5
-      },
-      {
-        "minQty": 50,
-        "price": 4.6
-      },
-      {
-        "minQty": 100,
-        "price": 3.9
+        "price": 990
       }
     ],
     "features": [
-      "Y2K Retro",
-      "Checkerboard",
-      "Flexible TPU",
-      "Anti-Drop"
-    ],
-    "isPopular": true,
-    "isNewArrival": true,
-    "isAvailable": true
-  },
-  {
-    "sku": "BCA-AES-WAV-YEL",
-    "ean": "4061279502009",
-    "name": {
-      "de": "anco Aesthetic Wavy Curly Border Airbag Hülle für iPhone 15 - Buttergelb (Butter Yellow)",
-      "en": "anco Aesthetic Wavy Curly Border Airbag Case for iPhone 15 - Butter Yellow"
-    },
-    "description": {
-      "de": "Trending Trendfarbe Butter Yellow mit ergonomischen Wavy-Wellenkanten für maximalen Grip und hervorragenden Fallschutz.",
-      "en": "Trending viral Butter Yellow hue with ergonomic wavy scalloped edges for superior handheld grip and corner impact dispersion."
-    },
-    "brand": "anco",
-    "category": "Cases & Covers",
-    "compatibleDevices": [
-      "iPhone 15",
-      "iPhone 16",
-      "iPhone 14",
-      "iPhone 13"
-    ],
-    "images": [
-      "/products/aesthetic/aesthetic-case-9.jpg"
-    ],
-    "stock": 250,
-    "moq": 5,
-    "basePrice": 6.4,
-    "tieredPricing": [
-      {
-        "minQty": 10,
-        "price": 5.4
-      },
-      {
-        "minQty": 50,
-        "price": 4.5
-      },
-      {
-        "minQty": 100,
-        "price": 3.8
-      }
-    ],
-    "features": [
-      "Butter Yellow",
-      "Wavy Grip",
-      "Corner Airbags",
-      "Matte Finish"
-    ],
-    "isPopular": true,
-    "isNewArrival": true,
-    "isAvailable": true
-  },
-  {
-    "sku": "BCA-AES-SNT-GRD",
-    "ean": "4061279502010",
-    "name": {
-      "de": "anco Aesthetic Sunset Gradient Acrylic MagSafe Hülle für iPhone 16 Pro Max - Pastellverlauf",
-      "en": "anco Aesthetic Sunset Gradient Acrylic MagSafe Case for iPhone 16 Pro Max - Pastel Blush"
-    },
-    "description": {
-      "de": "Sanfter Farbverlauf inspiriert von goldenen Sommerabenden. Integrierter unsichtbarer MagSafe-Magnetring für kabelloses Schnellladen.",
-      "en": "Gentle sunset pastel ombré gradient inspired by golden hour twilight. Embedded high-flux MagSafe ring for fast wireless magnetic alignment."
-    },
-    "brand": "anco",
-    "category": "Cases & Covers",
-    "compatibleDevices": [
-      "iPhone 16 Pro Max",
-      "iPhone 16 Pro",
-      "iPhone 15 Pro Max",
-      "iPhone 15 Pro"
-    ],
-    "images": [
-      "/products/aesthetic/aesthetic-case-10.jpg"
-    ],
-    "stock": 190,
-    "moq": 5,
-    "basePrice": 7.8,
-    "tieredPricing": [
-      {
-        "minQty": 10,
-        "price": 6.7
-      },
-      {
-        "minQty": 50,
-        "price": 5.6
-      },
-      {
-        "minQty": 100,
-        "price": 4.8
-      }
-    ],
-    "features": [
-      "MagSafe Qi2",
-      "Pastel Gradient",
-      "Scratch-Resistant",
-      "Camera Guard"
-    ],
-    "isPopular": true,
-    "isNewArrival": true,
-    "isAvailable": true
-  },
-  {
-    "sku": "BCA-AES-LCE-PRL",
-    "ean": "4061279502011",
-    "name": {
-      "de": "anco Aesthetic Parisian Lace & Pearl Chain Hülle für iPhone 16 Pro - Coquette Vintage",
-      "en": "anco Aesthetic Parisian Lace & Pearl Chain Crossbody Case for iPhone 16 Pro - Coquette Vintage"
-    },
-    "description": {
-      "de": "Romantische Spitzenmuster-Gravur mit abnehmbarer Schmuck-Perlenkette. Das Must-Have Accessoire für Fashion-Boutiquen.",
-      "en": "Romantic French lace motif with a detachable genuine-feel pearl beaded wristlet chain. Essential fashion statement for lifestyle boutiques."
-    },
-    "brand": "anco",
-    "category": "Cases & Covers",
-    "compatibleDevices": [
-      "iPhone 16 Pro",
-      "iPhone 16",
-      "iPhone 15 Pro",
-      "iPhone 15"
-    ],
-    "images": [
-      "/products/aesthetic/aesthetic-case-11.jpg"
-    ],
-    "stock": 175,
-    "moq": 5,
-    "basePrice": 8.2,
-    "tieredPricing": [
-      {
-        "minQty": 10,
-        "price": 7.1
-      },
-      {
-        "minQty": 50,
-        "price": 5.9
-      },
-      {
-        "minQty": 100,
-        "price": 5.1
-      }
-    ],
-    "features": [
-      "Pearl Chain",
-      "Lace Texture",
-      "Coquette Vibe",
-      "Reinforced Eyelets"
-    ],
-    "isPopular": true,
-    "isNewArrival": true,
-    "isAvailable": true
-  },
-  {
-    "sku": "BCA-AES-MBL-GLD",
-    "ean": "4061279502012",
-    "name": {
-      "de": "anco Aesthetic Marble & Gold Foil Glanzhülle für iPhone 15 Pro - Smaragd & Blattgold",
-      "en": "anco Aesthetic Marble & Gold Foil Luxury Case for iPhone 15 Pro - Emerald Green & Gold Leaf"
-    },
-    "description": {
-      "de": "Luxuriöse Marmor-Fließoptik veredelt mit glänzendem Blattgold-Akzenten. Kristallklare Acryl-Rückseite mit 9H Härtegrad.",
-      "en": "Opulent fluid marble aesthetic accented with metallic gold leaf veining. Scratch-resistant acrylic backplate with 9H surface rigidity."
-    },
-    "brand": "anco",
-    "category": "Cases & Covers",
-    "compatibleDevices": [
-      "iPhone 15 Pro",
-      "iPhone 15 Pro Max",
-      "iPhone 16 Pro",
-      "iPhone 16 Pro Max"
-    ],
-    "images": [
-      "/products/aesthetic/aesthetic-case-12.jpg"
-    ],
-    "stock": 220,
-    "moq": 5,
-    "basePrice": 7.1,
-    "tieredPricing": [
-      {
-        "minQty": 10,
-        "price": 6.1
-      },
-      {
-        "minQty": 50,
-        "price": 5.1
-      },
-      {
-        "minQty": 100,
-        "price": 4.3
-      }
-    ],
-    "features": [
-      "Gold Leaf Foil",
-      "Fluid Marble",
-      "9H Hardness",
-      "Luxury Finish"
-    ],
-    "isPopular": true,
-    "isNewArrival": true,
-    "isAvailable": true
-  },
-  {
-    "sku": "BCA-AES-FST-MAG",
-    "ean": "4061279502013",
-    "name": {
-      "de": "anco Aesthetic Ultra-Slim Frosted Matte MagSafe Hülle für iPhone 16 Pro - Titan Natur",
-      "en": "anco Aesthetic Ultra-Slim Frosted Matte MagSafe Case for iPhone 16 Pro - Natural Titanium"
-    },
-    "description": {
-      "de": "Seidiges Frosted-Finish lässt das Apple-Logo dezent durchscheinen. Perfekt ausgerichtete N52-Magnete für magnetische Halterungen & Powerbanks.",
-      "en": "Translucent frosted matte texture subtly reveals the Apple emblem. Flush N52 neodymium magnets provide rock-solid grip on Qi2 mounts & batteries."
-    },
-    "brand": "anco",
-    "category": "Cases & Covers",
-    "compatibleDevices": [
-      "iPhone 16 Pro",
-      "iPhone 16 Pro Max",
-      "iPhone 16",
-      "iPhone 15 Pro"
-    ],
-    "images": [
-      "/products/aesthetic/aesthetic-case-13.jpg"
-    ],
-    "stock": 350,
-    "moq": 5,
-    "basePrice": 6.9,
-    "tieredPricing": [
-      {
-        "minQty": 10,
-        "price": 5.9
-      },
-      {
-        "minQty": 50,
-        "price": 4.9
-      },
-      {
-        "minQty": 100,
-        "price": 4.2
-      }
-    ],
-    "features": [
-      "Frosted Translucent",
-      "MagSafe N52",
-      "Anti-Fingerprint",
-      "Ultra Slim"
-    ],
-    "isPopular": true,
-    "isNewArrival": true,
-    "isAvailable": true
-  },
-  {
-    "sku": "BCA-AES-COT-STR",
-    "ean": "4061279502014",
-    "name": {
-      "de": "anco Aesthetic Cottagecore Erdbeer & Wildblüten Hülle für iPhone 15 - Cream White",
-      "en": "anco Aesthetic Cottagecore Strawberry & Wild Blossom Case for iPhone 15 - Cream White"
-    },
-    "description": {
-      "de": "Liebevoll illustriertes Beeren- und Blumenmuster im angesagten Cottagecore-Look. Griffiges TPU mit samtigem Touch.",
-      "en": "Whimsical hand-illustrated strawberries and delicate blossoms in trending cottagecore aesthetic. Anti-slip tactile TPU with velvety touch."
-    },
-    "brand": "anco",
-    "category": "Cases & Covers",
-    "compatibleDevices": [
-      "iPhone 15",
-      "iPhone 16",
-      "iPhone 14",
-      "iPhone 13"
-    ],
-    "images": [
-      "/products/aesthetic/aesthetic-case-14.jpg"
-    ],
-    "stock": 260,
-    "moq": 5,
-    "basePrice": 6.4,
-    "tieredPricing": [
-      {
-        "minQty": 10,
-        "price": 5.4
-      },
-      {
-        "minQty": 50,
-        "price": 4.5
-      },
-      {
-        "minQty": 100,
-        "price": 3.8
-      }
-    ],
-    "features": [
-      "Cottagecore",
-      "Hand-Illustrated",
-      "Anti-Slip",
-      "Camera Lip"
-    ],
-    "isPopular": true,
-    "isNewArrival": true,
-    "isAvailable": true
-  },
-  {
-    "sku": "BCA-AES-LQD-CHR",
-    "ean": "4061279502015",
-    "name": {
-      "de": "anco Aesthetic Liquid Mercury Chrome 3D Hülle für iPhone 16 Pro Max - Flüssigsilber",
-      "en": "anco Aesthetic Liquid Mercury Chrome 3D Metallic Case for iPhone 16 Pro Max - Fluid Silver"
-    },
-    "description": {
-      "de": "Skulpturale fließende Quecksilber-Formen mit spiegelndem Chromglanz. Der virale Y2K Statement-Look für High-End Boutiquen.",
-      "en": "Sculptural molten liquid mercury contour with high-gloss mirror chrome finish. The viral futuristic Y2K statement piece for premium storefronts."
-    },
-    "brand": "anco",
-    "category": "Cases & Covers",
-    "compatibleDevices": [
-      "iPhone 16 Pro Max",
-      "iPhone 16 Pro",
-      "iPhone 15 Pro Max",
-      "iPhone 15 Pro"
-    ],
-    "images": [
-      "/products/aesthetic/aesthetic-case-15.jpg"
-    ],
-    "stock": 230,
-    "moq": 5,
-    "basePrice": 7.9,
-    "tieredPricing": [
-      {
-        "minQty": 10,
-        "price": 6.8
-      },
-      {
-        "minQty": 50,
-        "price": 5.6
-      },
-      {
-        "minQty": 100,
-        "price": 4.9
-      }
-    ],
-    "features": [
-      "Liquid Mercury 3D",
-      "Chrome Mirror",
-      "Futuristic Y2K",
-      "Impact Bumper"
-    ],
-    "isPopular": true,
-    "isNewArrival": true,
-    "isAvailable": true
-  },
-  {
-    "sku": "BCA-AES-CAF-TYP",
-    "ean": "4061279502016",
-    "name": {
-      "de": "anco Aesthetic French Cafe Typography Neutral Hülle für iPhone 16 - Warm Espresso & Milchkaffee",
-      "en": "anco Aesthetic French Cafe Typography Neutral Case for iPhone 16 - Warm Espresso & Oat Milk"
-    },
-    "description": {
-      "de": "Minimalistische Buchclub- & Café-Typografie im Scandi-Neutral-Stil. Mattes Finish gegen Kratzer und Fingerabdrücke.",
-      "en": "Understated bookstore and Parisian coffeehouse typography in Scandi neutral palette. Resilient matte coating resists daily scuffs."
-    },
-    "brand": "anco",
-    "category": "Cases & Covers",
-    "compatibleDevices": [
-      "iPhone 16",
-      "iPhone 16 Pro",
-      "iPhone 15",
-      "iPhone 15 Pro"
-    ],
-    "images": [
-      "/products/aesthetic/aesthetic-case-16.jpg"
-    ],
-    "stock": 290,
-    "moq": 5,
-    "basePrice": 6.3,
-    "tieredPricing": [
-      {
-        "minQty": 10,
-        "price": 5.3
-      },
-      {
-        "minQty": 50,
-        "price": 4.4
-      },
-      {
-        "minQty": 100,
-        "price": 3.7
-      }
-    ],
-    "features": [
-      "Cafe Typography",
-      "Scandi Neutral",
-      "Matte Shield",
-      "Precision Cutouts"
-    ],
-    "isPopular": true,
-    "isNewArrival": true,
-    "isAvailable": true
-  },
-  {
-    "sku": "BCA-AES-HRT-PNK",
-    "ean": "4061279502017",
-    "name": {
-      "de": "anco Aesthetic Heart Embossed Quilted Lederhülle für iPhone 15 Pro - Zartrosa Pastell",
-      "en": "anco Aesthetic Heart Embossed Quilted Vegan Leather Case for iPhone 15 Pro - Soft Baby Pink"
-    },
-    "description": {
-      "de": "Geprägtes Herzsteppmuster aus feinstem veganen Leder. Hochwertige Haptik, edle Metalltasten und vollständiger Kameraschutz.",
-      "en": "Embossed heart-quilted pattern crafted from premium vegan leather. Luxurious soft handfeel, tactile aluminum buttons, and full lens shielding."
-    },
-    "brand": "anco",
-    "category": "Cases & Covers",
-    "compatibleDevices": [
-      "iPhone 15 Pro",
-      "iPhone 16 Pro",
-      "iPhone 15",
-      "iPhone 14 Pro"
-    ],
-    "images": [
-      "/products/aesthetic/aesthetic-case-17.jpg"
-    ],
-    "stock": 215,
-    "moq": 5,
-    "basePrice": 7.6,
-    "tieredPricing": [
-      {
-        "minQty": 10,
-        "price": 6.5
-      },
-      {
-        "minQty": 50,
-        "price": 5.4
-      },
-      {
-        "minQty": 100,
-        "price": 4.6
-      }
-    ],
-    "features": [
-      "Heart Quilted",
-      "Vegan Leather",
-      "Metal Buttons",
-      "Luxury Touch"
-    ],
-    "isPopular": true,
-    "isNewArrival": true,
-    "isAvailable": true
-  },
-  {
-    "sku": "BCA-AES-NRD-ABS",
-    "ean": "4061279502018",
-    "name": {
-      "de": "anco Aesthetic Nordic Abstract Shapes & Line Art Hülle für iPhone 16 Pro Max - Terrakotta & Salbei",
-      "en": "anco Aesthetic Nordic Abstract Shapes & Line Art Case for iPhone 16 Pro Max - Terracotta & Sage"
-    },
-    "description": {
-      "de": "Skandinavische Kunstformen und organische Linien in warmen Naturtönen. Stoßabsorbierender TPU-Stoßrahmen mit griffiger matter Textur.",
-      "en": "Scandinavian modern art silhouettes and organic curves in earthy nature hues. Shock-absorbing perimeter frame with textured non-slip hold."
-    },
-    "brand": "anco",
-    "category": "Cases & Covers",
-    "compatibleDevices": [
-      "iPhone 16 Pro Max",
-      "iPhone 16 Pro",
-      "iPhone 15 Pro Max",
-      "iPhone 15 Pro"
-    ],
-    "images": [
-      "/products/aesthetic/aesthetic-case-18.jpg"
-    ],
-    "stock": 240,
-    "moq": 5,
-    "basePrice": 6.6,
-    "tieredPricing": [
-      {
-        "minQty": 10,
-        "price": 5.6
-      },
-      {
-        "minQty": 50,
-        "price": 4.7
-      },
-      {
-        "minQty": 100,
-        "price": 4
-      }
-    ],
-    "features": [
-      "Nordic Abstract",
-      "Organic Shapes",
-      "Earth Tones",
-      "Shock Absorbing"
+      "3K 120Hz OLED",
+      "Intel Core Ultra 7",
+      "1.2 kg Ultra-Light",
+      "1TB SSD"
     ],
     "isPopular": true,
     "isNewArrival": true,

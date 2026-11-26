@@ -45,7 +45,7 @@ const HomePage = () => {
 
   const categoryChips = [
     { key: 'All', de: 'Alle Artikel', en: 'All Articles' },
-    { key: 'Cases & Covers', de: 'Aesthetic iPhone Hüllen (Lieferbar)', en: 'Aesthetic iPhone Cases (In Stock)' },
+    { key: 'Laptops & Notebooks', de: 'Laptops & MacBooks (Lieferbar)', en: 'Laptops & MacBooks (In Stock)' },
     { key: 'Smartwatches & Wearables', de: 'Smartwatches (Demnächst)', en: 'Smartwatches (Coming Soon)' },
     { key: 'Smartphones & Endgeräte', de: 'Smartphones (Demnächst)', en: 'Smartphones (Coming Soon)' },
     { key: 'Power & Charging', de: 'Laden & Qi2 (Demnächst)', en: 'Power & Charging (Coming Soon)' },
@@ -65,7 +65,7 @@ const HomePage = () => {
         <div className="space-y-2 max-w-2xl">
           <div className="inline-flex items-center gap-1.5 bg-[#00d2c4]/20 border border-[#00d2c4]/40 px-2.5 py-1 rounded text-[11px] font-bold text-[#00d2c4]">
             <Sparkles size={13} />
-            <span>{isGerman ? 'Aesthetic iPhone Cases • Jetzt sofort ab Lager lieferbar' : 'Aesthetic iPhone Cases • In Stock & Ready to Ship'}</span>
+            <span>{isGerman ? 'Laptops & MacBooks • Jetzt sofort ab Lager lieferbar' : 'Laptops & MacBooks • In Stock & Ready to Ship'}</span>
           </div>
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-normal leading-snug text-white">
             {t('home.title')}
@@ -83,10 +83,10 @@ const HomePage = () => {
             {t('home.ctaRegister')}
           </Link>
           <button
-            onClick={() => setSelectedCategory('Cases & Covers')}
+            onClick={() => setSelectedCategory('Laptops & Notebooks')}
             className="bg-white/10 hover:bg-white/20 text-white border border-white/25 text-xs font-semibold px-4 py-2.5 rounded transition text-center whitespace-nowrap active:scale-[0.98] cursor-pointer"
           >
-            {isGerman ? 'iPhone Hüllen ansehen' : 'View iPhone Cases'}
+            {isGerman ? 'Laptops & MacBooks ansehen' : 'View Laptops & MacBooks'}
           </button>
         </div>
       </section>
