@@ -35,8 +35,7 @@ const CatalogPage = () => {
   const isGerman = i18n.language?.startsWith('de');
 
   const categories = [
-    { key: 'Laptops & Notebooks', de: 'Laptops & MacBooks (Lieferbar)', en: 'Laptops & MacBooks (In Stock)', inStock: true },
-    { key: 'Cases & Covers', de: 'Cases & Schutzhüllen (Demnächst)', en: 'Cases & Covers (Coming Soon)', inStock: false },
+    { key: 'Cases & Covers', de: 'Cases & Covers (Lieferbar)', en: 'Cases & Covers (In Stock)', inStock: true },
     { key: 'Smartwatches & Wearables', de: 'Smartwatches & Wearables (Demnächst)', en: 'Smartwatches & Wearables (Coming Soon)', inStock: false },
     { key: 'Smartphones & Endgeräte', de: 'Smartphones & Endgeräte (Demnächst)', en: 'Smartphones & Devices (Coming Soon)', inStock: false },
     { key: 'Tablets & Zubehör', de: 'Tablets & Zubehör (Demnächst)', en: 'Tablets & Accessories (Coming Soon)', inStock: false },
@@ -45,17 +44,13 @@ const CatalogPage = () => {
     { key: 'Gadgets & Mounts', de: 'Gadgets & Halterungen (Demnächst)', en: 'Gadgets & Mounts (Coming Soon)', inStock: false },
   ];
 
-  const brands = ['Apple', 'Lenovo', 'Dell', 'HP', 'ASUS', 'Samsung', 'anco', 'Xiaomi'];
+  const brands = ['Apple', 'Samsung', 'Otterbox', 'anco', 'Xiaomi', 'Motorola', 'PopSockets', 'Guess'];
   const devices = [
-    'MacBook Pro 16"',
-    'MacBook Air 15"',
-    'MacBook Air 13"',
-    'ThinkPad X1 Carbon',
-    'Dell XPS 15',
-    'Surface Laptop 6',
     'iPhone 16 Pro',
     'iPhone 16 Pro Max',
     'Galaxy S24 Ultra',
+    'Galaxy S24',
+    'Galaxy Tab A9+',
     'Universal',
   ];
 

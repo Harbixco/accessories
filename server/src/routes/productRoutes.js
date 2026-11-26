@@ -20,19 +20,19 @@ const getOptionalUser = async (req) => {
 };
 
 let seededPromise = null;
-const ensureLaptopsSeeded = async () => {
+const ensureAestheticSeeded = async () => {
   if (seededPromise) return seededPromise;
   seededPromise = (async () => {
     try {
-      const count = await Product.countDocuments({ sku: /^BCA-LAP-/ });
-      if (count < 8) {
-        console.log(`[Auto-Sync] Syncing missing laptops into MongoDB (${count}/8)...`);
+      const count = await Product.countDocuments({ sku: /^BCA-AES-/ });
+      if (count < 18) {
+        console.log(`[Auto-Sync] Syncing missing aesthetic cases into MongoDB (${count}/18)...`);
         const seedProducts = require('../seed/seedData');
-        const laptops = seedProducts.filter((p) => p.sku.startsWith('BCA-LAP-'));
-        for (const item of laptops) {
-          await Product.findOneAndUpdate({ sku: item.sku }, item, { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true });
+        const aesthetic = seedProducts.filter((p) => p.sku.startsWith('BCA-AES-'));
+        for (const item of aesthetic) {
+          await Product.findOneAndUpdate({ sku: item.sku }, item, { upsert: true, returnDocument: 'after' });
         }
-        console.log('[Auto-Sync] All 8 laptops synced to MongoDB.');
+        console.log('[Auto-Sync] All 18 aesthetic cases synced to MongoDB.');
       }
     } catch (err) {
       console.warn('[Auto-Sync Warning]:', err.message);
@@ -46,7 +46,7 @@ const ensureLaptopsSeeded = async () => {
 // @access  Public (Prices are gated unless user is approved B2B)
 router.get('/', async (req, res) => {
   try {
-    await ensureLaptopsSeeded();
+    await ensureAestheticSeeded();
     const { brand, category, device, search, sort, page = 1, limit = 40 } = req.query;
     const query = {};
 
