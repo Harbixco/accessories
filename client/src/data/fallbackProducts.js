@@ -19,7 +19,7 @@ export const fallbackProducts = [
       "iPhone 15 Pro"
     ],
     "images": [
-      "/products/aesthetic/aesthetic-case-1.jpg"
+      "/products/laptops/laptop-dell-xps.jpg"
     ],
     "stock": 240,
     "moq": 5,
@@ -68,7 +68,7 @@ export const fallbackProducts = [
       "iPhone 15"
     ],
     "images": [
-      "/products/aesthetic/aesthetic-case-2.jpg"
+      "/products/laptops/laptop-macbook-pro.jpg"
     ],
     "stock": 180,
     "moq": 5,
@@ -5929,7 +5929,7 @@ export const fallbackProducts = [
       "Universal"
     ],
     "images": [
-      "/products/screen-protector.jpg"
+      "/products/laptops/laptop-macbook-air.jpg"
     ],
     "stock": 103,
     "moq": 5,
@@ -5971,7 +5971,7 @@ export const fallbackProducts = [
       "Universal"
     ],
     "images": [
-      "/products/screen-protector.jpg"
+      "/products/laptops/laptop-surface.jpg"
     ],
     "stock": 157,
     "moq": 5,
