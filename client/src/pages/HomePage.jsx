@@ -105,11 +105,10 @@ const HomePage = () => {
               <button
                 key={cat.key}
                 onClick={() => setSelectedCategory(cat.key)}
-                className={`px-2.5 py-1 rounded text-xs font-medium transition-all duration-150 cursor-pointer active:scale-95 ${
-                  selectedCategory === cat.key
-                    ? 'bg-[#0B1E3F] text-white font-bold shadow-2xs'
-                    : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400'
-                }`}
+                className={`px-2.5 py-1 rounded text-xs font-medium transition-all duration-150 cursor-pointer active:scale-95 ${selectedCategory === cat.key
+                  ? 'bg-[#0B1E3F] text-white font-bold shadow-2xs'
+                  : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400'
+                  }`}
               >
                 {isGerman ? cat.de : cat.en}
               </button>
